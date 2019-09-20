@@ -1,0 +1,47 @@
+<skin>
+	<!-- A/V Settings same as Setup Screen-->
+	<!-- Auto Language Selection same as Setup Screen-->
+	<!-- OSD Positioner -->
+	<screen name="UserInterfacePositioner" position="0, 0" size="1280, 720" backgroundColor="background" flags="wfNoBorder" title="OSD Positioner">
+		<panel name="SetupCommon" />
+		<panel name="SetupTextHelp" />
+		<panel name="SetupConfig"/>
+		<widget source="status" render="Label" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<!-- OSD 3D Setup -->
+	<screen name="OSD3DSetupScreen" position="0, 0" size="1280, 720" backgroundColor="background" flags="wfNoBorder" title="OSD Positioner">
+		<panel name="SetupCommon" />
+		<panel name="SetupTextHelp" />
+		<panel name="SetupConfig"/>
+		<widget source="status" render="Label" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<!-- GUI Setup same as Setup Screen-->
+	<!-- OSD Settings same as Setup Screen-->
+	<!-- Buttons Settings same as Setup Screen-->
+	<!-- Language selection -->
+	<screen name="LanguageSelection" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Language selection" >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget enableWrapAround="1" position="710, 140" render="Listbox" backgroundColor="#41000000"  scrollbarMode="showOnDemand" size="395,430" source="languages" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
+						MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
+					],
+				 "fonts": [gFont("Regular", 20)],
+				 "itemHeight": 50
+				}
+			</convert>
+		</widget>
+		<ePixmap position="95, 135" size="300, 500" pixmap="menu/mainmenu_tv_channel.png"/>
+	</screen> 
+	<!-- Time Settings same as Setup Screen-->
+	<!-- Front Panel Settings same as Setup Screen-->
+	<!-- HDMICec Setup -->
+	<screen name="HdmiCECSetupScreen" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder"  title="HdmiCEC Setup">
+		<panel name="SetupCommon" />
+		<panel name="SetupConfig"/>
+		<widget source="fixed_address" render="Label" position="100,175" size="300,40"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<widget source="current_address" render="Label" position="100,215" size="300,40"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+</skin>

@@ -1,0 +1,21 @@
+<skin>
+	<!-- Harddisk Setup use SETUP screen skin -->
+	<!-- Format and Initialize -->
+	<screen position="0,0" size="1280,720" name="HarddiskSelection" flags="wfNoBorder" backgroundColor="un44000000" title="Select HDD">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="hddlist" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<ePixmap pixmap="menu/mainmenu_source_mount.png" position="235,200" size="166,162"/>
+	</screen>
+	<!-- Harddisk setup -->
+	<screen position="0,0" size="1280,720" name="HarddiskSetup" flags="wfNoBorder" backgroundColor="un44000000" title="Harddisk Setup">
+		<panel name="SetupCommon" />
+		<widget position="70,135" size="360,60" name="model" font="Regular;22" transparent="1" zPosition="1"/>
+		<widget position="70,195" size="360,30" name="capacity" font="Regular;22" transparent="1" zPosition="1"/>
+		<widget position="70,220" size="360,30" name="bus" font="Regular;22" transparent="1" zPosition="1"/>
+        </screen>
+	<!-- Harddisk wait -->
+	<screen position="0,0" size="1280,720" name="HarddiskWait" flags="wfNoBorder" backgroundColor="un44000000" title="Harddisk wait">
+		<widget position="390,450" size="500,25" name="wait" font="Regular;23" halign="center" transparent="1" valign="center" zPosition="1"/>
+	</screen>
+</skin>

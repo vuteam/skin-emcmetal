@@ -1,0 +1,100 @@
+<skin>
+	<screen name="picshow" position="0,0" backgroundColor="background" size="1280,720" flags="wfNoBorder" title="PicturePlayer">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="650,150" size="510,450" name="filelist" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>		
+		<widget position="169,150" size="372,280" name="thn" transparent="1" alphatest="on" />
+		<eLabel position="120,445" size="470,1" backgroundColor="#777777" zPosition="2" />
+		<widget position="140,460" size="430,110" source="label" render="Label" font="Regular;18" valign="top" foregroundColor="#777777" transparent="1" zPosition="2" />
+	</screen>
+ 
+	<screen name="Pic_Exif" position="0,0" backgroundColor="background" size="1280,720" flags="wfNoBorder" title="PicturePlayer">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap position="55, 155" size="300, 500" pixmap="menu/mainmenu_tasks_setup_photo.png"/>
+		<widget source="menu" backgroundColor="background" render="Listbox" position="510, 130" size="700, 480" zPosition="3" scrollbarMode="showOnDemand" selectionDisabled="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [ MultiContentEntryText(pos = (5, 7), size = (350, 30), flags = RT_HALIGN_LEFT, text = 0), 
+				MultiContentEntryText(pos = (360, 7), size = (390, 30), flags = RT_HALIGN_LEFT, text = 1)], 
+				"fonts": [gFont("Regular", 20)], 
+				"itemHeight": 35 }
+			</convert>
+		</widget>
+	</screen>  
+	<screen name="EcasaPictureWall" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<!-- <panel name="FullscreenMenuButtonPanel" /> -->
+		<widget name="waitingtext" position="center,center" size="1280,720" backgroundColor="#41000000"  valign="center" halign="center" font="Regular;26" transparent="1"/>
+		
+		<widget name="image0"  position="110,110"  size="190,160"/>
+		<widget name="image1"  position="320,110"  size="190,160"/>
+		<widget name="image2"  position="530,110"  size="190,160"/>
+		<widget name="image3"  position="740,110"  size="190,160"/>
+		<widget name="image4"  position="950,110"  size="190,160"/>
+		
+		<widget name="image5"  position="110,280"  size="190,160"/>
+		<widget name="image6"  position="320,280" size="190,160"/>
+		<widget name="image7"  position="530,280" size="190,160"/>
+		<widget name="image8"  position="740,280" size="190,160"/>
+		<widget name="image9"  position="950,280" size="190,160"/>
+		
+		<widget name="image10" position="110,450"  size="190,160"/>
+		<widget name="image11" position="320,450" size="190,160"/>
+		<widget name="image12" position="530,450" size="190,160"/>
+		<widget name="image13" position="740,450" size="190,160"/>
+		<widget name="image14" position="950,450" size="190,160"/>
+		<!-- TODO: find some better picture -->
+		<widget name="highlight" position="110,272" size="190,5"/>
+	</screen>
+	<screen name="ViewerSelectScreen" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 415" name="list" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="WebcamViewer" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_source_radio.png" position="275,200" size="166,162"/>
+		<widget position="665,115" render="Listbox" scrollbarMode="showOnDemand" backgroundColor="#41000000" size="500,500" source="menu" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [ MultiContentEntryText(pos = (20, 8), size = (400, 30), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0) ],
+				"fonts": [gFont("Regular", 24)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="TravelWebcamviewer" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget source="list" render="Listbox" position="590, 140" size="610, 445" zPosition="1" scrollbarMode="showOnDemand" transparent="1"  >
+			<convert type="TemplatedMultiContent">
+			{"templates":
+				{"default": (77,[
+						MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (100, 75), png = 4), # index 4 is the thumbnail
+						MultiContentEntryText(pos = (100, 1), size = (500, 22), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 1), # index 1 is the Title
+						MultiContentEntryText(pos = (100, 24), size = (300, 18), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 5), # index 5 is the Published Date
+						MultiContentEntryText(pos = (100, 43), size = (300, 18), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 6), # index 6 is the Views Count
+						MultiContentEntryText(pos = (400, 24), size = (200, 18), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 7), # index 7 is the duration
+						MultiContentEntryText(pos = (400, 43), size = (200, 18), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 8), # index 8 is the ratingcount
+					]),
+				"status": (77,[
+						MultiContentEntryText(pos = (10, 1), size = (500, 28), font=2, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 0), # index 0 is the name
+						MultiContentEntryText(pos = (10, 22), size = (500, 46), font=3, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP| RT_WRAP, text = 1), # index 2 is the description
+					])
+				},
+				"fonts": [gFont("Regular", 22),gFont("Regular", 18),gFont("Regular", 26),gFont("Regular", 20)],
+				"itemHeight": 77
+			}
+			</convert>
+		</widget>
+		<widget name="thumbnail" position="0,0" size="100,75" alphatest="on"/> <!-- fake entry for dynamic thumbnail resizing, currently there is no other way doing this. -->
+		<ePixmap pixmap="menu/mainmenu_source_radio.png" position="235,200" size="166,162"/>
+
+		<widget name="count" position="25,585" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="page" position="170,585" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="currentnumbers" position="315,585" zPosition="5" size="240,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+	</screen>
+</skin>
+	

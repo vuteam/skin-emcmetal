@@ -1,0 +1,622 @@
+<skin>
+
+	<!--
+	 | Graphics layers and zPosition
+	 |
+	 | The screens that make up InfoBar, SecondInfoBar and MoviePlayer
+	 | use 4 graphics layers (zPositions), -1, 0 (default), 1 and 2.
+	 |
+	 |   -1 Backgrounds.
+	 |    0 Main graphics layer, also used for "off" icons for status.
+	 |      indicators and "unused" state of tuner status and backgrounds
+	 |      of gauges. Default layer.
+	 |    1 First overlay, used for also used for "on" icons for status
+	 |      indicators and "recording" state of tuner status and
+	 |      active parts of gauges.
+	 |    2 Second overlay, used for "live TV" state of tuner status.
+	 |
+	 | Screens DVDPlayer and RadioInfoBar do not appear to be used
+	 | in the current Enigma2 firmware (in RADIO mode, the firmware
+	 | uses Infobar).
+	 |
+	 +-->
+
+	<!-- Main TV infobar -->
+
+	<screen name="InfoBar" title="Information Bar" position="0,0" size="1280,720" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!-- Common parts of infobar screens -->
+
+		<panel position="0,548" size="1280,172">
+			<panel name="InfoBarCommon"/>
+		</panel>
+
+	</screen>
+
+
+	<!-- Second TV infobar with Now/Next extended information -->
+
+	<screen name="SecondInfoBar" title="Event View" position="0,0" size="1280,720" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!-- Common parts of infobar screens -->
+
+		<panel name="InfoBar"/>
+
+		<!-- Now & Next information panels -->
+
+		<panel position="55,72" size="600,458">
+			<panel name="SecondInfoBarNow"/>
+		</panel>
+		<panel position="700,72" size="540,458">
+			<panel name="SecondInfoBarNext"/>
+		</panel>
+
+	</screen>
+
+	<!-- Common parts of TV infobars -->
+
+	<!-- Clock -->
+
+	<screen name="InfoBarClock" position="0,0" size="150,50" backgroundColor="transparent2" flags="wfNoBorder">
+		<widget position="0,0" size="150,28" source="global.CurrentTime" render="Label" font="Regular; 26" halign="center" foregroundColor="twhite" backgroundColor="transpBlack" transparent="1">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget position="0,30" size="150,20" source="global.CurrentTime" render="Label" font="Regular; 17" halign="center" foregroundColor="titulos" backgroundColor="transpBlack" transparent="1">
+			<convert type="ClockToText">ShortFullDate</convert>
+		</widget>
+	</screen>
+
+	<!-- Icons for Online services - shown in live only -->
+
+	<screen name="InfoBarOnlineIcons" position="0,0" size="22,22" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!--	Online software updates -->
+		<ePixmap position="0,0" size="22,22" pixmap="infobar/ico_update_off.png" alphatest="blend" />
+		<widget position="0,0" size="22,22" source="global.OnlineStableUpdateState" render="Pixmap" zPosition="1" pixmap="infobar/ico_update_on.png" alphatest="blend">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+	<!-- Icons for DTV services - live only -->
+
+	<screen name="InfoBarDTVIcons" position="0,0" size="97,20" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!--	HBBTV icon -->
+		<ePixmap position="0,0" size="56,20" pixmap="infobar/ico_hbbtv_off.png" alphatest="blend" />
+		<widget position="0,0" size="56,20" source="session.CurrentService" render="Pixmap" pixmap="infobar/ico_hbbtv_on.png" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">HasHBBTV</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<!--	Teletext icon -->
+		<ePixmap position="62,1" size="35,19" pixmap="infobar/ico_txt_off.png" alphatest="blend" />
+		<widget position="62,1" size="35,19" source="session.CurrentService" render="Pixmap" pixmap="infobar/ico_txt_on.png" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+	<!-- Icons for video stream state - common to live and playback -->
+
+	<screen name="InfoBarVideoIcons" position="0,0" size="136,21" backgroundColor="transparent2" flags="wfNoBorder">
+		<!--	Dolby audio icon -->
+		<ePixmap position="0,1" size="57,21" pixmap="infobar/ico_dolby_off.png" alphatest="blend" />
+		<widget position="0,1" size="57,21" source="session.CurrentService" render="Pixmap" pixmap="infobar/ico_dolby_on.png" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<!--	Widescreen icon -->
+		<ePixmap position="63,1" size="37,20" pixmap="infobar/ico_169_off.png" alphatest="blend" />
+		<widget position="63,1" size="37,20" source="session.CurrentService" render="Pixmap" pixmap="infobar/ico_169_on.png" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<!--	HD TV icon -->
+		<ePixmap position="106,1" size="30,20" pixmap="infobar/ico_hd_off.png" alphatest="blend" />
+		<widget position="106,1" size="30,20" source="session.CurrentService" render="Pixmap" pixmap="infobar/ico_hd_on.png" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">800,2000</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+	<screen name="InfoBarBroadcastTypeIcon" position="0,0" size="25,26" backgroundColor="transparent2" flags="wfNoBorder">
+		<!--	Digital broadcast type icons terrestrial/satellite -->
+		<widget source="session.FrontendInfo" render="Pixmap" position="0,0" size="25,26" pixmap="infobar/ico_dvb_s-fs8.png" alphatest="blend">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" position="0,0" size="25,26" pixmap="infobar/ico_dvb_t-fs8.png" alphatest="blend">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+	<!--	Tuner use -->
+
+	<screen name="InfoBarTunerInfo" position="0,0" size="34,48" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!--	dark grey text, tuner not in use
+		 |	green text, current liveTV tuner
+		 |	red text, in use for recording
+		 +-->
+
+		 <!--	Unused tuner id - overwritten by tuners in use -->
+		<eLabel text="A" position="0,0" size="17,24" font="Named; 18" halign="center" foregroundColor="darkergrey" backgroundColor="transpBlack" transparent="1" />
+		<eLabel text="B" position="17,0" size="17,24" font="Named; 18" halign="center" foregroundColor="darkergrey" backgroundColor="transpBlack" transparent="1" />
+		<eLabel text="C" position="0,24" size="17,24" font="Named; 18" halign="center" foregroundColor="darkergrey" backgroundColor="transpBlack" transparent="1" />
+		<eLabel text="D" position="17,24" size="17,24" font="Named; 18" halign="center" foregroundColor="darkergrey" backgroundColor="transpBlack" transparent="1" />
+		 <!--	Tuners used for recording
+		  |	- overwrites "unused" background
+		  +-->
+		<widget source="session.TunerInfo" render="FixedLabel" text="A" position="0,0" zPosition="1" size="17,24" font="Named; 18" halign="center" foregroundColor="red" backgroundColor="transpBlack" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" text="B" position="17,0" zPosition="1" size="17,24" font="Named; 18" halign="center" foregroundColor="red" backgroundColor="transpBlack" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" text="C" position="0,24" zPosition="1" size="17,24" font="Named; 18" halign="center" foregroundColor="red" backgroundColor="transpBlack" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" text="D" position="17,24" zPosition="1" size="17,24" font="Named; 18" halign="center" foregroundColor="red" backgroundColor="transpBlack" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		 <!--	Tuner used for live TV
+		  |	- overwrites "unused" background & recording tuners
+		  +-->
+		<widget source="session.FrontendInfo" render="FixedLabel" text="A" position="0,0" zPosition="2" size="17,24" font="Named; 18" halign="center" foregroundColor="green" backgroundColor="transpBlack" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" text="B" position="17,0" zPosition="2" size="17,24" font="Named; 18" halign="center" foregroundColor="green" backgroundColor="transpBlack" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" text="C" position="0,24" zPosition="2" size="17,24" font="Named; 18" halign="center" foregroundColor="green" backgroundColor="transpBlack" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" text="D" position="17,24" zPosition="2" size="17,24" font="Named; 18" halign="center" foregroundColor="green" backgroundColor="transpBlack" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">3,3</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+	<!--	Live TV tuner signal strength/quality
+		AGC -> signal strength: bar, percentage
+		SNR -> signal quality: bar, percentage
+	  -->
+
+	<screen name="InfoBarSignalInfo" position="0,0" size="152,35" backgroundColor="transparent2" flags="wfNoBorder">
+		<!--	AGC bar -->
+		<widget position="0,6" render="Progress" size="100,5" source="session.FrontendStatus" borderWidth="1" borderColor="progresoazul" pixmap="progress_snr.png">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+
+		<!--	AGC percentage -->
+		<widget source="session.FrontendStatus" render="Label" position="103,0" size="49,20" font="Regular; 15" foregroundColor="uncccccc" backgroundColor="background" transparent="1" halign="left">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+
+		<!--	SNR bar -->
+		<widget position="0,21" render="Progress" size="100,5" source="session.FrontendStatus" borderWidth="1" borderColor="progresoazul" pixmap="progress_snr.png">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+
+		<!--	SNR percentage -->
+		<widget source="session.FrontendStatus" render="Label" position="103,15" size="49,20" font="Regular; 15" foregroundColor="uncccccc" backgroundColor="background" transparent="1">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+	</screen>
+
+	<screen name="InfoBarCommon" position="0,0" size="1280,172" backgroundColor="transparent2" flags="wfNoBorder">
+
+		<!-- Bottom bar -->
+
+		<!-- Bottom infobar backgrounds and trim -->
+
+		<!--	Top edge -->
+		<ePixmap position="0,0" size="1280,17" pixmap="infobar/sombranewarr-fs8.png" zPosition="-1" />
+		<!--	Body -->
+		<ePixmap position="0,17" size="1280,155" pixmap="navy_fondo-fs8.png" zPosition="-1" />
+		<!--	Separator between service num/picon and rest of bar -->
+		<ePixmap position="180,26" size="2,110" pixmap="navy_lineamed-fs8.png" />
+
+		<!-- Bottom bar - service number, name & picon -->
+
+		<!--	Service number -->
+		<widget name="serviceNumber" position="193,26" size="55,30" halign="left" font="Regular; 24" backgroundColor="background" transparent="1" foregroundColor="titulos" shadowColor="#000000" shadowOffset="-2,-2" />
+
+		<!--	Service name with number -->
+		<widget name="serviceName" position="268,26" size="491,30" font="Regular; 24" backgroundColor="background" transparent="1" foregroundColor="titulos" shadowColor="#000000" shadowOffset="-2,-2" />
+
+		<!--	Service name without number -->
+		<widget name="serviceName1" position="193,26" size="566,30" font="Regular; 24" backgroundColor="background" transparent="1" foregroundColor="titulos" shadowColor="#000000" shadowOffset="-2,-2" />
+
+		<!-- Date/Time top left of bar -->
+
+		<panel position="25,26" size="150,50" >
+			<panel name="InfoBarClock" />
+		</panel>
+
+		<!--	Channellogo (Picon) -->
+		<widget source="session.CurrentService" render="Picon" position="50,77" size="100,60" transparent="1" alphatest="blend">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<!--	Conditional Access Module (CAM) name -->
+		<!-- <widget source="session.CurrentService" render="Label" position="30,139" size="641,20" font="Regular; 15" halign="left" foregroundColor="border1" backgroundColor="background" transparent="1">
+			<convert type="EGExtraInfo">CamName</convert>
+		</widget> -->
+
+		<!--	Bouquet -->
+		<widget source="session.CurrentService" render="Label" position="25,145" size="150,16" font="Bold; 14" halign="center" foregroundColor="border1" backgroundColor="black" transparent="1" shadowColor="#000000" shadowOffset="-2,-2" noWrap="1">
+			<convert type="ServiceName2">Bouquet</convert>
+		</widget>
+
+		<!-- Bottom bar - info icons top right -->
+
+		<!-- Icons for Online services -->
+
+		<panel position="1002,26" size="22,22" >
+			<panel name="InfoBarOnlineIcons" />
+		</panel>
+
+		<!-- Icons for DTV services -->
+
+		<panel position="1030,26" size="97,20" >
+			<panel name="InfoBarDTVIcons" />
+		</panel>
+
+		<!-- Icons for video stream state -->
+
+		<panel position="1133,26" size="136,21" >
+			<panel name="InfoBarVideoIcons" />
+		</panel>
+
+		<!--	Video Info -->
+		<widget position="1143,60" size="115,20" source="session.CurrentService" render="Label" font="Bold;14" halign="center" foregroundColor="grey" backgroundColor="black" transparent="1">
+			<convert type="ServiceInfo">VideoInfo</convert>
+		</widget>
+
+		<!--	Digital broadcast type / tranponder info  -->
+
+		<widget position="839,129" size="409,32" source="session.CurrentService" render="Label" font="Bold; 14" halign="right" foregroundColor="border1" backgroundColor="black" transparent="1" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="PliExtraInfo">TransponderInfo2line</convert>
+		</widget>
+
+		<!-- Current event information -->
+
+		<!--	Start & end time -->
+		<widget source="session.Event_Now" render="Label" position="192,67" size="198,28" halign="left" font="Regular; 21" backgroundColor="background" transparent="1" noWrap="1" foregroundColor="grey" shadowColor="#000000" shadowOffset="-2,-2" valign="center">
+			<convert type="EventTime">Times</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+
+		<!--	Event name -->
+		<widget source="session.Event_Now" render="Label" position="390,60" size="490,36" halign="left" font="Regular; 30" backgroundColor="background" transparent="1" noWrap="1" foregroundColor="colorsel" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">Name</convert>
+		</widget>
+
+		<!--	Event remaining time -->
+		<widget source="session.Event_Now" render="Label" position="880,67" size="110,28" halign="right" font="Regular; 21" backgroundColor="background" transparent="1" foregroundColor="un53a9ff" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+
+		<!--	Event progress bar -->
+		<ePixmap position="390,94" size="600,7" pixmap="progress_event_background.png" alphatest="on" transparent="1" />
+		<widget source="session.Event_Now" render="Progress" position="390,95" size="600,8" pixmap="progress_event.png" transparent="1" zPosition="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+
+		<!-- Next event information -->
+
+		<!--	Start & end time -->
+		<widget source="session.Event_Next" render="Label" position="192,105" size="198,28" halign="left" font="Regular; 21" foregroundColor="grey" backgroundColor="background" transparent="1" noWrap="1" valign="top" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Times</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+
+		<!--	Event name -->
+		<widget source="session.Event_Next" render="Label" position="390,105" size="500,28" halign="left" font="Regular; 20" backgroundColor="background" transparent="1" noWrap="1" valign="top" foregroundColor="foreground" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">Name</convert>
+		</widget>
+
+		<!--	Event duration -->
+		<widget source="session.Event_Next" render="Label" position="890,105" size="100,28" halign="right" font="Regular; 21" backgroundColor="background" transparent="1" valign="top" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>
+
+		<!--	Digital broadcast type icons terrestrial/satellite -->
+		<panel position="1046,88" size="97,20" >
+			<panel name="InfoBarBroadcastTypeIcon"/>
+		</panel>
+
+		<!--	Tuner use -->
+		<panel position="1072,80" size="34,48">
+			<panel name="InfoBarTunerInfo"/>
+		</panel>
+
+		<!--	Live TV tuner signal strength/quality -->
+
+		<panel position="1109,91" size="152,35">
+			<panel name="InfoBarSignalInfo"/>
+		</panel>
+
+		<!-- Recording status -->
+
+		<!-- REC icon -->
+		<widget source="session.RecordState" render="Pixmap" pixmap="infobar/ico_rec.png" position="926,22" size="36,36" alphatest="blend">
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<!-- Service name for recording -->
+		<widget source="session.RecordState" position="677,29" render="Label" size="245,20" valign="center" halign="right" backgroundColor="black" foregroundColor="unff4040" font="Regular;14" transparent="1">
+			<convert type="infoRecBm">NombreyCanal</convert>
+		</widget>
+
+		<!-- Progress bar for recording -->
+		<widget source="session.RecordState" position="695,50" render="Progress" zPosition="1" pixmap="progress_rec.png" size="258,4" borderWidth="0" transparent="1">
+			<convert type="infoRecBm">Progress</convert>
+		</widget>
+
+		<!-- Progress bar for recording - background -->
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="695,50" size="258,4" backgroundColor="un22363636">
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<!--<ePixmap position="32,515" size="131,83" zPosition="30" pixmap="frame/frame_picon.png" transparent="1" alphatest="blend" />
+		<ePixmap position="51,525" size="100,60" zPosition="20" pixmap="picon_default.png" alphatest="blend" />-->
+	</screen>
+
+
+	<!-- Second TV infobar Now extended information -->
+
+	<screen name="SecondInfoBarNow" position="0,0" size="600,458" backgroundColor="transparent2" flags="wfNoBorder">
+		<!-- Panel background -->
+		<eLabel position="0,0" size="600,458" zPosition="-1" backgroundColor="abackground" />
+
+		<!-- Service number & name -->
+		<widget position="7,12" size="40,30" name="serviceNumber1" halign="right" font="Regular; 20" backgroundColor="background" transparent="1" foregroundColor="grey" noWrap="1"/>
+		<widget position="66,12" size="414,30" source="session.CurrentService" render="Label" font="Regular; 20" transparent="1" backgroundColor="black" halign="left" foregroundColor="un53a9ff" shadowColor="#000000" shadowOffset="-2,-2" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+
+		<!-- Panel icon -->
+		<ePixmap position="7,42" size="40,37" name="logoazboxhd" pixmap="infobar/ico_tv.png" alphatest="blend" />
+
+		<!-- Event name -->
+		<widget position="66,55" size="520,23" source="session.Event_Now" render="Label" halign="left" valign="top" font="Regular; 18" backgroundColor="background" transparent="1" noWrap="1" foregroundColor="colorsel" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">Name</convert>
+		</widget>
+
+		<!-- Event start & end times, and time remaining -->
+		<widget position="66,78" size="175,28" source="session.Event_Now" render="Label" halign="left" valign="top" font="Regular; 18" backgroundColor="background" transparent="1" foregroundColor="grey" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Times</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget position="241,78" size="240,28" source="session.Event_Now" render="Label" halign="left" valign="top" font="Regular; 18" backgroundColor="background" transparent="1" foregroundColor="un53a9ff" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+
+		<!-- Event extended description -->
+		<widget position="20,110" size="560,286" source="session.Event_Now" render="Label" font="Regular; 19" valign="top" backgroundColor="background" transparent="1" foregroundColor="foreground" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">FullDescription</convert>
+		</widget>
+		<!-- Genre and Event Rating Area -->
+		<widget source="session.Event_Now" render="Label" position="20,402" size="560,20" backgroundColor="background" font="Regular;18" foregroundColor="grey" transparent="1">
+			<convert type="EventName">GenreList</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Pixmap" position="20,427" size="40,20" alphatest="blend">
+			<convert type="EventName">RatingIcon</convert>
+			<convert type="ValueToPixmap">Path</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="65,428" size="515,20" backgroundColor="background" font="Regular;18" foregroundColor="grey" transparent="1">
+			<convert type="EventName">Rating</convert>
+		</widget>
+	</screen>
+
+
+	<!-- Second TV infobar Next extended information -->
+
+	<screen name="SecondInfoBarNext" position="0,0" size="540,458" backgroundColor="transparent2" flags="wfNoBorder">
+		<!-- Panel background -->
+		<eLabel position="0,0" size="540,458" zPosition="-1" backgroundColor="abackground" />
+
+		<!-- Panel icon -->
+		<eLabel position="0,55" size="29,23" name="nexticon" halign="left" valign="top" font="Regular; 18" text="&gt;&gt;" foregroundColor="un53a9ff" shadowColor="#000000" shadowOffset="-2,-2" transparent="1" />
+
+		<!-- Event name -->
+		<widget position="35,55" size="520,23" source="session.Event_Next" render="Label" halign="left" valign="top" font="Regular; 18" backgroundColor="background" transparent="1" noWrap="1" foregroundColor="foreground" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">Name</convert>
+		</widget>
+
+		<!-- Event start & end times, and duration -->
+		<widget position="35,78" size="175,28" source="session.Event_Next" render="Label" halign="left" valign="top" font="Regular; 18" foregroundColor="grey" backgroundColor="background" transparent="1" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventTime">Times</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget position="215,78" size="240,28" source="session.Event_Next" render="Label" halign="left" valign="top" font="Regular; 18" backgroundColor="background" transparent="1" shadowColor="#000000" shadowOffset="-2,-2" foregroundColor="un53a9ff">
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>
+
+		<!-- Event extended description -->
+		<widget position="20,110" size="500,273" source="session.Event_Next" render="Label" font="Regular; 18" valign="top" backgroundColor="background" transparent="1" foregroundColor="grey" shadowColor="#000000" shadowOffset="-2,-2">
+			<convert type="EventName">FullDescription</convert>
+		</widget>
+		<!-- Genre and Event Rating Area -->
+		<widget source="session.Event_Next" render="Label" position="20,402" size="500,20" backgroundColor="background" font="Regular;18" foregroundColor="grey" transparent="1">
+			<convert type="EventName">GenreList</convert>
+		</widget>
+		<widget source="session.Event_Next" render="Pixmap" position="20,427" size="40,20" alphatest="blend">
+			<convert type="EventName">RatingIcon</convert>
+			<convert type="ValueToPixmap">Path</convert>
+		</widget>
+		<widget source="session.Event_Next" render="Label" position="65,428" size="455,20" backgroundColor="background" font="Regular;18" foregroundColor="grey" transparent="1">
+			<convert type="EventName">Rating</convert>
+		</widget>
+	</screen>
+
+
+	<screen name="MoviePlayer" position="0,603" size="1280,117" title="InfoBar" backgroundColor="transparent2" flags="wfNoBorder" >
+		<!-- Bottom infobar backgrounds and trim -->
+
+		<!--	Top edge -->
+		<ePixmap position="0,0" size="1280,17" pixmap="infobar/sombranewarr-fs8.png" zPosition="-1" />
+		<!--	Body -->
+		<ePixmap position="0,17" size="1280,100" pixmap="navy_fondo-fs8.png" zPosition="-1" />
+
+		<!-- Date/Time top left of bar -->
+		<panel position="25,32" size="150,50" >
+			<panel name="InfoBarClock" />
+		</panel>
+
+		<!--	Recording name -->
+		<widget source="session.CurrentService" render="Label" position="270,27" size="740,30" font="Named;22" halign="center" valign="center" noWrap="1" backgroundColor="black" transparent="1" foregroundColor="white">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+
+		<!--	Playback state icon -->
+		<widget name="statusicon" position="230,55" size="20,20" alphatest="blend" pixmaps="icons/play.png,icons/pause.png,icons/stop.png,icons/forward.png,icons/backward.png,icons/slow.png,icons/blank.png" />
+
+		<!-- Playback speed indicator -->
+		<widget name="speed" position="205,77" size="45,20" font="Regular;16" halign="right" valign="center" foregroundColor="foreground" backgroundColor="background" transparent="1" />
+
+		<!--	Playback progress bar -->
+		<eLabel position="260,57" size="760,18" backgroundColor="darkergrey"/>
+		<widget position="260,58" size="760,16" source="session.CurrentService" render="PositionGauge" pointer="pointer_blue.png:3,3" foregroundColor="darkgrey" transparent="1" zPosition="1">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+
+		<!--	Playback progress position -->
+		<widget position="270,77" size="130,20" source="session.CurrentService" halign="left" valign="top" render="Label" font="Regular;18" backgroundColor="black" shadowColor="black" shadowOffset="-1,-1" transparent="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+
+		<!--	Recording length -->
+		<widget position="550,77" size="180,20" source="session.CurrentService" halign="center" valign="top" render="Label" font="Regular;18" backgroundColor="black" transparent="1">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+
+		<!--	Playback time remaining -->
+		<widget position="890,77" size="130,20" source="session.CurrentService" halign="right" valign="top" render="Label" font="Regular;18" backgroundColor="black" transparent="1">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+
+		<!-- Status icons -->
+
+		<!-- "Recording" icon, shown when there is an active recording -->
+		<widget position="1057,27" size="36,36" source="session.RecordState" render="Pixmap" pixmap="infobar/ico_rec.png" alphatest="blend">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+
+		<!-- Icons for video stream state -->
+		<panel position="1133,32" size="136,21" >
+			<panel name="InfoBarVideoIcons" />
+		</panel>
+
+		<!--	Video Info -->
+		<widget position="1124,67" size="136,20" source="session.CurrentService" font="Regular;16" halign="right" render="Label" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ServiceInfo">VideoInfo</convert>
+		</widget>
+	</screen>
+
+	<screen name="DVDPlayer" flags="wfNoBorder" position="0, 0" size="1280,720" title="DVDPlayer" backgroundColor="transparent">
+		<!-- Background -->
+		<!--	Top edge -->
+		<ePixmap position="0,548" size="1280,17" pixmap="infobar/sombranewarr-fs8.png" zPosition="-1" />
+		<!--	Body -->
+		<ePixmap position="0,565" size="1280,155" pixmap="navy_fondo-fs8.png" zPosition="-1" />
+		<!-- Time -->
+		<widget position="1113, 661" size="95, 26" source="global.CurrentTime" render="Label" font="Named; 21" valign="bottom" halign="right" backgroundColor="black" transparent="1" foregroundColor="white">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<!-- Channellogo (Picon) -->
+		<ePixmap position="75, 605" size="95,75" pixmap="frame/frame80_95x75.png" zPosition="1"/>
+		<ePixmap position="87, 616" size="70,53" pixmap="general/picon_movie.png" zPosition="2"/>
+		<!-- Service name -->
+		<widget position="55, 560" size="1170, 25" source="session.CurrentService" render="Label" font="Named; 23" valign="center" halign="center" noWrap="1" backgroundColor="black" shadowColor="#000000" shadowOffset="-1,-1" transparent="1" foregroundColor="white">
+			  <convert type="ServiceName">Name</convert>
+		</widget>
+		<!-- Progressbar (movie position)-->
+		<ePixmap position="184, 595" size="600,16" pixmap="mpslider.png" zPosition="3" alphatest="on"/>
+		<widget source="session.CurrentService" render="PositionGauge" position="204, 596" size="560,14" zPosition="2" pointer="pointer.png:13,3">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<!-- Elapsed time -->
+		<widget position="184, 615" size="130, 20" source="session.CurrentService" render="Label" font="Regular;18" halign="left" valign="center" backgroundColor="black" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+			<convert type="ServicePosition">Position,ShowHours</convert>
+		</widget>
+		<!-- Remaining time -->
+		<widget position="653, 615" size="130, 20" source="session.CurrentService" render="Label" font="Regular;18" halign="right" valign="center" backgroundColor="black" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
+		</widget>
+		<!-- Chapter info -->
+		<widget name="chapterLabel" position="184, 645" size="380, 22" font="Regular;20" foregroundColor="unc3c3c9" backgroundColor="black" transparent="1"/>
+		<!-- Icons for help -->
+		<ePixmap position="1056, 594" pixmap="icons/icon_rewind.png" size="36,36" alphatest="blend"/>
+		<ePixmap position="1094, 594" pixmap="icons/icon_play.png" size="36,36" alphatest="blend"/>
+		<ePixmap position="1132, 594" pixmap="icons/icon_pause.png" size="36,36" alphatest="blend"/>
+		<ePixmap position="1170, 594" pixmap="icons/icon_forward.png" size="36,36" alphatest="blend"/>
+		<!-- Audio icon (is there multichannel audio?) -->
+		<ePixmap pixmap="icons/i_dolby.png" position="1018, 594" zPosition="1" size="36,36" alphatest="on"/>
+		<widget name="audioLabel" position="968, 645" size="130,22" font="Regular;18" backgroundColor="black" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" valign="bottom"/>
+		<!-- Subtitle track info -->
+		<widget source="session.CurrentService" render="Pixmap" pixmap="icons/i_txt.png" position="980, 594" zPosition="1" size="36,36" alphatest="on">
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="subtitleLabel" position="920, 645" size="48,22" font="Regular;18" backgroundColor="black" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" valign="bottom"/>
+	</screen>
+
+      <!-- Radio infobar -->
+	<screen flags="wfNoBorder" name="RadioInfoBar" position="150,180" size="480,390" title="Radio" zPosition="2">
+		<widget font="Regular;28" noWrap="1" position="20,0" render="Label" size="480,30" source="session.CurrentService" transparent="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget font="Regular;21" noWrap="1" position="20,40" render="Label" size="460,20" source="session.Event_Now" transparent="1">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<eLabel backgroundColor="#3366cc" position="20,63" size="460,1" zPosition="2"/>
+		<widget position="190,81" render="Progress" size="300,14" source="session.Event_Now" transparent="1" zPosition="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget font="Regular;26" position="20,75" render="Label" size="70,30" source="session.Event_Now" transparent="1">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;26" position="90,75" render="Label" size="90,30" source="session.Event_Now" transparent="1">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget font="Regular;20" position="20,110" render="Label" size="460,190" source="RdsDecoder" transparent="1">
+			<convert type="RdsInfo">RadioText</convert>
+		</widget>
+		<widget alphatest="on" pixmap="icons/i_rass.png" position="70,310" render="Pixmap" size="48,48" source="RdsDecoder">
+		<convert type="RdsInfo">RasInteractiveAvailable</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="icons/i_rec.png" position="20,310" render="Pixmap" size="48,48" source="session.RecordState">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+</skin>

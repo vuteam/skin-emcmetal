@@ -1,0 +1,182 @@
+<skin>
+	<!-- Air Player -->
+	<screen name="AP_ConfigScreen" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />  
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup.png" position="235,200" size="166,162"/>
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+
+	<!-- AutoTimer Plugin -->
+	<screen name="AutoTimerHelp" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Help">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162" />
+		<widget position="510, 120" size="720, 450" name="detailtext" itemHeight="50" font="Regular; 20" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="AutoTimerOverview" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Overview">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenMenuButtonPanel" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162" />
+		<widget position="510, 120" size="720, 450" name="entries" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="AutoTimerEditor" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Editor">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap position="55,120" size="390,180" borderColor="grey" borderWidth="2" transparent="1"/>
+		<widget source="help" render="Label" position="60,125" size="380,170" font="Regular;18" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<panel name="SetupConfig" />
+	</screen>
+	<screen name="AutoTimerSettings" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Settings">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<eLabel position="910, 80" size="300, 22" font="Named; 20" backgroundColor="black" halign="right" transparent="1" text="Auto Timer Settings" foregroundColor="crypt_emm"/>
+		<ePixmap position="55,120" size="390,180" borderColor="grey" borderWidth="2" transparent="1"/>
+		<widget source="help" render="Label" position="60,125" size="380,170" font="Regular;18" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<panel name="SetupConfig" />
+	</screen>
+	<screen name="AutoTimerImporter" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Importer">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162" />
+		<widget position="510, 120" size="720, 450" name="list" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="AutoTimerFilterEditor" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Filter Editor">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162" />
+		<panel name="SetupConfig" />
+	</screen>
+	<screen name="AutoTimerServiceEditor" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Auto Timer Service Editor">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162" />
+		<panel name="SetupConfig" />
+	</screen>
+
+	<!-- GMAIL PLUGIN -->
+	<screen name="GmailSetup" position="0,0" size="1280,720" title="Gmail Settings" backgroundColor="un44000000" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="Gmailbodyviewer" position="0,0" size="1280,720" title="Gmail - View Mail"  backgroundColor="un44000000" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />  
+		<panel name="FullScreenColourPanel" />
+		<widget name="title"  position="100,120" size="1080,30" transparent="1" halign="left" font="Regular;24" foregroundColor="white"/>
+		<widget name="author" position="100,150" size="1080,30" transparent="1" halign="left" font="Regular;20" foregroundColor="grey"/>
+		<widget name="tdate"  position="100,170" size="1080,30" transparent="1" halign="left" font="Regular;20" foregroundColor="grey"/>
+		<widget name="text"  position="100,210" size="1080,400" transparent="1" halign="left" font="Regular;20" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="Gmailfeedsscrn" position="0,0" size="1280,720" title="Gmail - Mail List" backgroundColor="un44000000" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />  
+		<panel name="FullScreenColourPanel" />
+		<widget name="menu" position="center,center" size="1020,500" scrollbarMode="showOnDemand" transparent="1" zPosition="2" />
+		<widget name="info" position="center,center" zPosition="4" size="620,300" font="Regular;24" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />
+	</screen>
+	<!-- Weather Plugin -->
+	<screen name="WeatherPluginEntriesListConfigScreenfore" position="0,0" size="1280,720" title="WeatherPlugin: List of Entries (foreca.com)" backgroundColor="un44000000" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="city" position="605, 115" size="150,50" font="Regular;20" halign="left"/>
+		<widget name="language" position="735, 115" size="150,50" font="Regular;20" halign="left"/>
+		<widget position="590, 170" size="610, 415" name="entrylist" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="WeatherPluginEntryConfigScreenfore" position="0,0" size="1280,720" title="WeatherPlugin: Edit Entry (foreca.com)" backgroundColor="un44000000" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<!-- Web Interface Plugin -->
+	<screen name="OpenWebifConfig" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="OpenWebif Config">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="config" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<ePixmap pixmap="frame/frame_400x200.png" position="50,115" size="400,200" alphatest="on" />
+		<widget name="lab1" position="100,150" size="300,150"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<!-- Gmail News Plugin -->
+	<screen  name="GnewsFeedScreenList" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<eLabel position="890, 80" size="320, 22" text="Google News" font="Named; 20" halign="right" transparent="1" zPosition="2" foregroundColor="crypt_emm" backgroundColor="black"/>
+		<ePixmap pixmap="menu/mainmenu_source_radio.png" position="235,200" size="166,162"/>
+		<widget position="590, 150" size="610, 440" name="mylist" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen  name="GnewsFeedScreenContent" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="890, 80" size="320, 22" name="info" font="Named; 20" halign="right" transparent="1" zPosition="2" foregroundColor="crypt_emm" backgroundColor="black"/>
+		<ePixmap pixmap="menu/mainmenu_source_radio.png" position="120,200" size="166,162"/>
+		<widget position="360, 150" size="830, 430" name="mylist" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="FMenusimple" position="center,center" size="920,600" title="Feed"  flags="wfNoBorder" >
+		<widget name="titel" position="20,0" zPosition="1" size="560,130" font="Regular;24" transparent="1"  backgroundColor="#00000000" foregroundColor="yellow" valign="center" halign="left" />
+		<widget name="leagueNumberWidget" position="830,60" size="90,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
+		<ePixmap position="830,20" zPosition="4" size="60,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/GoogleNews/images/arrows.png" transparent="1" alphatest="on" />
+		<ePixmap position="15,88" size="890,12" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/GoogleNews/images/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
+		<widget name="text" position="20,100" size="880,400" font="Regular;22" />
+		<ePixmap position="15,510" size="890,5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/GoogleNews/images/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
+	</screen>
+	<!-- IMDB -->
+	<screen name="IMDB" flags="wfNoBorder" position="0,0" size="1280,720" backgroundColor="un44000000" title="IMDb Details Plugin">
+		<panel name="FullScreenWindow"/>
+		<widget name="titellabel" position="235,75" size="820,30" font="Regular;25" transparent="1"/>
+		<widget name="starsbg" position="1020,75" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IMDb/starsbar_empty.png" zPosition="2" alphatest="blend"/>
+		<widget name="stars" position="1020,75" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IMDb/starsbar_filled.png" zPosition="3" transparent="1"/>
+		<widget name="ratinglabel" position="1020,96" size="210,24" font="Regular;20" halign="center" foregroundColor="unf0b400" transparent="1"/>
+		<widget name="poster" position="50,75" size="156,229" alphatest="blend"/>
+		<widget name="detailslabel" position="235,120" size="995,184" font="Regular;20" transparent="1"/>
+		<widget name="castlabel" position="50,315" size="1180,276" font="Regular;20" transparent="1"/>
+		<widget name="extralabel" position="50,110" size="1180,483" font="Regular;20" transparent="1"/>
+		<widget name="menu" position="50,170" size="1180,425" zPosition="3" scrollbarMode="showOnDemand" transparent="1"/>
+		<widget name="statusbar" position="50,603" size="1180,20" font="Regular;18" foregroundColor="uncccccc" transparent="1"/>
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenMenuButtonPanel"/>
+		<panel name="FullscreenInfoButtonPanel"/>
+		<panel name="FullscreenHelpButtonPanel"/>
+	</screen>
+	<!-- IP Channels -->
+	<screen name="ServerEditor" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 145" size="610, 450" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>	
+	<screen name="StreamingChannelFromServerScreen" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 145" size="610, 450" name="list" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<ePixmap position="50,195" size="400,200" alphatest="on" pixmap="frame/frame_400x200.png"/>
+		<widget position="60,205" size="380,180" source="statusbar" render="Label" font="Regular;20" halign="center" valign="center" transparent="1" zPosition="2"/>		
+	</screen>
+	<!-- IP Channels for T-Pod Plugin -->
+	<screen name="RemoteTunerScanner" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" >
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="IPTV Server Scanner" transparent="1" zPosition="2"/>
+		<panel name="FullScreenColourPanel" />
+		<panel name="CommonWizard"/>
+	</screen>
+	<screen name="RemoteTunerServerEditor" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" >
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="IPTV Server Setup" transparent="1" zPosition="2"/>
+		<panel name="FullScreenColourPanel" />
+		<panel name="CommonWizard"/>
+		<widget position="550,365" size="600,250" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>  
+	</screen>
+	<screen name="RemoteTunerServerDownloader" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" >
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="IPTV Server Channel Downloader" transparent="1" zPosition="2"/>
+		<panel name="FullScreenColourPanel" />
+		<panel name="CommonWizard"/>
+		<widget position="550,365" size="600,250" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>  
+	</screen>
+	<!-- SimpleUmount Plugin -->
+	<screen name="SimpleUmount" position="center,center" size="680,450" title="SimpleUmount">
+		<widget name="wdg_label_instruction" position="10,10" size="660,30" font="Regular;20" />
+		<widget name="wdg_label_legend_1" position="10,60" size="130,30" font="Regular;20" />
+		<widget name="wdg_label_legend_2" position="145,60" size="180,30" font="Regular;20" />
+		<widget name="wdg_label_legend_3" position="325,60" size="180,30" font="Regular;20" />
+		<widget name="wdg_label_legend_4" position="525,60" size="130,30" font="Regular;20" />
+		<widget name="wdg_menulist_device" position="10,90" size="660,300" font="Console;20" />
+		<widget name="wdg_config" position="10,410" size="660,30" font="Regular;20" />
+	</screen>
+
+</skin>  

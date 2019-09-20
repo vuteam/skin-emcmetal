@@ -1,0 +1,52 @@
+<skin>
+	<!-- Channel Selection, Recording Settings, TimeShift Settings, Subtitles Settings, EPG Settings, use SETUP Screen Skin -->
+	<!-- Common interface - selection -->
+	<screen flags="wfNoBorder" name="CiSelection" position="0,0" size="1280, 720" backgroundColor="un44000000"  title="Select Common interface">
+		<panel name="SetupCommon" />
+		<widget name="text" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<widget name="entries" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<!-- Common interface - menu -->
+	<screen flags="wfNoBorder" name="MMIDialog" position="0,0" size="1280, 720" backgroundColor="un44000000"  title="Common interface - menu">
+		<panel name="SetupCommon" />
+		<widget name="entries" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<widget name="title" position="100,170" size="300,30"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<widget name="subtitle" position="100,200" size="300,30"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<widget name="bottom" position="100,230" size="300,30"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<!-- Parental control - change pin -->
+	<screen align="center" flags="wfNoBorder" name="ParentalControlChangePin" position="0,0" size="1280,720" title="Change pin code">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup_parental.png" position="235,200" size="166,162"/>
+		<panel name="SetupConfig"/>
+	</screen>
+	<!-- ParentalControlSetup -->
+	<screen name="ParentalControlSetup" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="ParentalControlSetup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup_parental.png" position="235,200" size="166,162"/>
+		<widget position="590, 100" size="610, 500" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>
+	</screen>
+	<!-- Parental control - editor -->
+	<screen flags="wfNoBorder" name="ParentalControlEditor" position="0, 0" size="1280, 720" backgroundColor="un44000000" title="Parental control services Editor">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup_parental.png" position="235,200" size="166,162"/>
+		<widget name="servicelist" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<!-- Pin input -->
+	<screen flags="wfNoBorder" name="PinInput" position="0, 0" size="1280, 720" backgroundColor="un44000000" title="Pin code needed">
+		<panel name="SetupCommon" />
+		<widget name="input" position="590, 150" font="Named; 46" size="210, 50" backgroundColor="#41000000" transparent="1"/>
+		<widget name="service" position="100,170" size="300,30"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+		<widget name="text" position="60,136" size="380,69"  font="Regular;20" halign="center" transparent="1" valign="bottom" zPosition="2"/>
+		<widget name="tries" position="60,215" size="380,69"  font="Regular;20" halign="center" transparent="1" valign="top" zPosition="2"/>
+	</screen>
+	<screen name="ZapHistoryConfigurator" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Zap History Setup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="SetupConfig"/>
+		<ePixmap pixmap="menu/mainmenu_tv_zaphistory.png" position="200,200" size="166,162"/>
+	</screen>
+</skin>

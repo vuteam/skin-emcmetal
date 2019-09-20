@@ -1,0 +1,166 @@
+<skin>
+<!-- Screen Overlay Templates -->
+
+<!-- Screen layer to add heading clock, title and pin stripes  -->
+
+	<screen name="FullScreenWindow">
+		<ePixmap position="50,36" size="14,14" pixmap="icons/clock.png" alphatest="on" zPosition="3" />
+		<widget position="75,30" size="375,25" source="global.CurrentTime" backgroundColor="black" font="Named;22" foregroundColor="white" halign="left" render="Label" transparent="1" zPosition="3">
+			<convert type="ClockToText">LongFullDate</convert>
+		</widget>
+		<widget position="400,30" size="830,25" source="Title" backgroundColor="black" font="Named;22" foregroundColor="white" halign="right" render="Label" transparent="1" />
+		<eLabel position="50,65" size="1180,2" backgroundColor="darkgrey" zPosition="1" />
+		<eLabel position="50,625" size="1180,2" backgroundColor="darkgrey" zPosition="1" />
+	</screen>
+
+	<screen name="FullScreenColourPanel">
+		<panel position="0,635" size="200,60">
+			<panel name="RedPanel" />
+			<panel name="GreenPanel" />
+			<panel name="YellowPanel" />
+			<panel name="BluePanel" />
+			<panel name="HelpButtonPanel" />
+		</panel>
+	</screen>
+
+	<screen name="FullScreenLowColourPanel">
+		<panel position="0,670" size="200,50">
+			<panel name="RedPanel" />
+			<panel name="GreenPanel" />
+			<panel name="YellowPanel" />
+			<panel name="BluePanel" />
+			<panel name="HelpButtonPanel" />
+		</panel>
+	</screen>
+
+	<screen name="RedPanel">
+		<ePixmap position="185,0" size="200,60" alphatest="on" pixmap="buttons/button_200x60_red.png" zPosition="1" />
+		<widget position="189,0" size="192,36" name="key_red" conditional="key_red" borderWidth="1" halign="center" valign="center" noWrap="1" backgroundColor="#9f1313" font="Regular;20" transparent="1" zPosition="3" />
+		<widget position="189,0" size="192,36" source="key_red" conditional="key_red" borderWidth="1" halign="center" valign="center" noWrap="1" backgroundColor="#9f1313" font="Regular;20" render="Label" transparent="1" zPosition="4" />
+	</screen>
+	<screen name="GreenPanel">
+		<ePixmap position="420,0" size="200,60" alphatest="on" pixmap="buttons/button_200x60_green.png" zPosition="1" />
+		<widget position="424,0" size="192,36" name="key_green" conditional="key_green" borderWidth="1" backgroundColor="#1f771f" font="Regular;20" halign="center" valign="center" noWrap="1" transparent="1" zPosition="3" />
+		<widget position="424,0" size="192,36" source="key_green" conditional="key_green" borderWidth="1" backgroundColor="#1f771f" font="Regular;20" halign="center" valign="center" noWrap="1" render="Label" transparent="1" zPosition="4" />
+	</screen>
+	<screen name="YellowPanel">
+		<ePixmap position="650,0" size="200,60" alphatest="on" pixmap="buttons/button_200x60_yellow.png" zPosition="1" />
+		<widget position="654,0" size="192,36" name="key_yellow" conditional="key_yellow" borderWidth="1" backgroundColor="#a08500" font="Regular;20" halign="center" transparent="1" valign="center" noWrap="1" zPosition="3" />
+		<widget position="654,0" size="192,36" source="key_yellow" conditional="key_yellow" borderWidth="1" backgroundColor="#a08500" font="Regular;20" halign="center" render="Label" transparent="1" valign="center" noWrap="1" zPosition="4" />
+	</screen>
+	<screen name="BluePanel">
+		<ePixmap position="885,0" size="200,60" alphatest="on" pixmap="buttons/button_200x60_blue.png" zPosition="1" />
+		<widget position="889,0" size="192,36" name="key_blue" conditional="key_blue" borderWidth="1" backgroundColor="#18188b" font="Regular;20" halign="center" transparent="1" valign="center" noWrap="1" zPosition="3" />
+		<widget position="889,0" size="192,36" source="key_blue" conditional="key_blue" borderWidth="1" backgroundColor="#18188b" font="Regular;20" halign="center" render="Label" transparent="1" valign="center" noWrap="1" zPosition="4" />
+	</screen>
+
+	<screen name="MenuButtonPanel">
+		<ePixmap position="40,0" size="50,35" pixmap="buttons/key_menu_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="InfoButtonPanel">
+		<ePixmap position="110,0" size="50,35" pixmap="buttons/key_info_50x35.png" alphatest="blend" transparent="1" zPosition="11" />
+	</screen>
+	<screen name="VKeyIconButtonPanel">
+		<widget position="1110,0" size="50,35" source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="11">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="TextButtonPanel">
+		<ePixmap position="1110,0" size="50,35" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="HelpButtonPanel">
+		<widget source="key_help" render="Pixmap" pixmap="buttons/key_help_50x35.png" position="1180,0" size="50,35" alphatest="blend" objectTypes="key_help,StaticText" transparent="1" zPosition="10">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+<!-- Full screen button hints -->
+	<screen name="FullscreenMenuButtonPanel">
+		<ePixmap position="40,635" size="50,35" pixmap="buttons/key_menu_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenInfoButtonPanel">
+		<ePixmap position="110,635" size="50,35" pixmap="buttons/key_info_50x35.png" alphatest="blend" transparent="1" zPosition="11" />
+	</screen>
+	<screen name="FullscreenVKeyIconButtonPanel">
+		<widget position="1110,635" size="50,35" source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="11">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="FullscreenTextButtonPanel">
+		<ePixmap position="1110,635" size="50,35" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenHelpButtonPanel">
+		<panel position="0,635" size="200,60">
+			<panel name="HelpButtonPanel" />
+		</panel>
+	</screen>
+
+<!--
+ |  "Low" button hint backgrounds and button hints lower on the screen to allow a
+ |  little more screen space. Used in GraphicalEPG and in GraphicalEPGPIG.
+ +-->
+	<screen name="FullscreenLowMenuButtonPanel">
+		<ePixmap position="40,670" size="50,35" pixmap="buttons/key_menu_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenLowInfoButtonPanel">
+		<ePixmap position="110,670" size="50,35" pixmap="buttons/key_info_50x35.png" alphatest="blend" transparent="1" zPosition="11" />
+	</screen>
+	<screen name="FullscreenLowVKeyIconButtonPanel">
+		<widget position="1110,670" size="50,35" source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="11">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="FullscreenLowTextButtonPanel">
+		<ePixmap position="1110,670" size="50,35" pixmap="buttons/key_text_50x35.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenLowHelpButtonPanel">
+		<panel position="0,670" size="200,50">
+			<panel name="HelpButtonPanel" />
+		</panel>
+	</screen>
+
+<!--
+ |  "Small" button hint backgrounds and button hints to fit in
+ |  the limited space at the bottom of GraphicalInfoBarEPG.
+ +-->
+	<screen name="SmallHelpButtonPanel">
+		<widget source="key_help" render="Pixmap" pixmap="buttons/key_help.png" position="1180,0" size="35,25" alphatest="blend" objectTypes="key_help,StaticText" transparent="1" zPosition="10">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="FullscreenSmallMenuButtonPanel">
+		<ePixmap position="40,166" size="35,25" pixmap="buttons/key_menu.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenSmallInfoButtonPanel">
+		<ePixmap position="110,166" size="35,25" pixmap="buttons/key_info.png" alphatest="blend" transparent="1" zPosition="11" />
+	</screen>
+	<screen name="FullscreenSmallRedPanel">
+		<ePixmap position="155,170" size="15,16" alphatest="on" pixmap="buttons/button_red.png" zPosition="1" />
+		<widget position="175,166" size="200,25" backgroundColor="#18188b" font="Regular;20" halign="left" name="key_red" conditional="key_red" transparent="1" valign="center" zPosition="3" />
+	</screen>
+	<screen name="FullscreenSmallGreenPanel">
+		<ePixmap position="405,170" size="15,16" alphatest="on" pixmap="buttons/button_green.png" zPosition="1" />
+		<widget position="425,166" size="200,25" backgroundColor="#18188b" font="Regular;20" halign="left" name="key_green" conditional="key_green" transparent="1" valign="center" zPosition="3" />
+	</screen>
+	<screen name="FullscreenSmallYellowPanel">
+		<ePixmap position="655,170" size="15,16" alphatest="on" pixmap="buttons/button_yellow.png" zPosition="1" />
+		<widget position="675,166" size="200,25" backgroundColor="#18188b" font="Regular;20" halign="left" name="key_yellow" conditional="key_yellow" transparent="1" valign="center" zPosition="3" />
+	</screen>
+	<screen name="FullscreenSmallBluePanel">
+		<ePixmap position="905,170" size="15,16" alphatest="on" pixmap="buttons/button_blue.png" zPosition="1" />
+		<widget position="925,166" size="200,25" backgroundColor="#18188b" font="Regular;20" halign="left" name="key_blue" conditional="key_blue" transparent="1" valign="center" zPosition="3" />
+	</screen>
+	<screen name="FullscreenSmallVKeyIconButtonPanel">
+		<widget position="1110,166" size="35,25" source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" alphatest="blend" transparent="1" zPosition="11">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="FullscreenSmallTextButtonPanel">
+		<ePixmap position="1110,166" size="35,25" pixmap="buttons/key_text.png" alphatest="blend" transparent="1" zPosition="10" />
+	</screen>
+	<screen name="FullscreenSmallHelpButtonPanel">
+		<panel position="0,166" size="35,25">
+			<panel name="SmallHelpButtonPanel"/>
+		</panel>
+	</screen>
+</skin>

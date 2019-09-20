@@ -1,0 +1,82 @@
+<skin>
+	<!-- Mediaplayer -->
+	<screen flags="wfNoBorder" name="MediaPlayer" position="0, 0" size="1280, 720" backgroundColor="background" title="MediaPlayer">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenMenuButtonPanel" />
+		<panel name="FullscreenInfoButtonPanel" />
+		<panel name="FullscreenTextButtonPanel" />
+		<eLabel backgroundColor="white" position="665,340" size="450,2" zPosition="2"/>
+		<widget enableWrapAround="1" name="filelist" position="650,120" scrollbarMode="showOnDemand" size="570,207" transparent="1" zPosition="2"/>
+		<widget enableWrapAround="1" name="playlist" position="650,347" scrollbarMode="showOnDemand" size="570,254" transparent="1" zPosition="2"/>
+		<widget alphatest="on" name="coverArt" pixmap="general/no_coverArt.png" position="250,150" size="200,200" transparent="1"/>
+		<widget font="Regular;22" name="title" position="120,370" size="470,26" transparent="1" valign="top" zPosition="2"/>
+		<eLabel backgroundColor="#777777" position="120,405" size="470,1" zPosition="2"/>
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="artisttext" position="100,420" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="artist" position="220,420" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="albumtext" position="100,445" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="album" position="220,445" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="yeartext" position="100,470" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="year" position="220,470" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="genretext" position="100,495" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="genre" position="220,495" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<eLabel backgroundColor="#777777" position="120,530" size="470,1" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="slider/slider_10x400_hbg.png" position="135,556" size="400,14" transparent="1" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="slider/slider_10_fg_ab.png" position="135,556" size="7,14" transparent="1" zPosition="2"/>
+		<widget name="PositionGauge" pointer="slider/slider_10x497_hfg.png:490,0" position="142,555" size="393,14" transparent="1" zPosition="4"/>
+		<widget alphatest="on" name="repeat" pixmaps="buttons/button_20x20_blue_off.png,buttons/button_20x20_blue_on.png" position="560,554" size="20,20" transparent="1" zPosition="2"/>	
+		<widget name="currenttext" position="0,0" size="0,0"/>
+		<widget name="titletext" position="0,0" size="0,0"/>
+	</screen>
+	<screen name="MediaPlayerDirectoryBrowser" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="File Browser">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup.png" position="235,200" size="166,162"/>
+		<widget position="590, 170" size="610, 415" name="filelist" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen flags="wfNoBorder"  name="LastFMScreenMain" position="0, 0" size="1280, 720" backgroundColor="background" title="Last.FM" >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="artist" position="100,420" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="info_artist" position="220,420" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" foregroundColor="#777777" halign="right" name="album" position="100,445" size="100,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;18" name="info_album" position="220,445" size="370,19" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;22" foregroundColor="#777777" name="track" position="120,370" size="470,26" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;22" name="info_track" position="220,370" size="370,30" transparent="1" valign="center" halign="left" zPosition="2" />                 
+		<widget name="duration" position="420,370" size="60,30" valign="center" halign="right" zPosition="2"  transparent="1" font="Regular;18" />          
+		<widget alphatest="on" name="info_cover" pixmap="general/no_coverArt.png" position="250,150" size="200,200" transparent="1"/>   
+		<eLabel backgroundColor="white" position="665,340" size="450,2" zPosition="2"/>
+		<widget enableWrapAround="1" name="tablist" position="650,120" scrollbarMode="showOnDemand" size="570,207" transparent="1" zPosition="2"/>
+		<widget enableWrapAround="1" name="streamlist" position="650,347" scrollbarMode="showOnDemand" size="570,254" transparent="1" zPosition="2"/>
+		<panel name="FullscreenMenuButtonPanel" />
+		<widget name="infolabel" position="0,600" size="1280,20" valign="center" halign="center" zPosition="2" transparent="1" font="Regular;18" />           
+        </screen> 
+	<screen name="SHOUTcastWidget" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="SHOUTcast">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenMenuButtonPanel" />
+		<widget name="headertext" position="127, 120" zPosition="1" size="1060, 23" font="Regular;20" transparent="1" backgroundColor="black"/>
+		<widget name="statustext" position="69, 260" zPosition="1" size="1160, 90" font="Regular;20" halign="center" valign="center" transparent="1" backgroundColor="black"/>
+		<widget name="list" position="127, 155" zPosition="2" size="1060, 316" scrollbarMode="showOnDemand" transparent="1" backgroundColor="black"/>
+		<widget name="titel" position="240, 490" zPosition="1" size="950, 20" font="Regular;18" transparent="1" backgroundColor="black"/>
+		<widget name="station" position="240, 510" zPosition="1" size="950, 40" font="Regular;18" transparent="1" backgroundColor="black"/>
+		<widget name="console" position="240, 550" zPosition="1" size="950, 50" font="Regular;18" transparent="1" backgroundColor="black"/>
+		<widget name="cover" zPosition="2" position="127, 490" size="102,110" alphatest="blend"/>
+		<ePixmap position="75, 70" zPosition="4" size="120,35" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IniSHOUTcast/shoutcast-logo1-fs8.png" transparent="1" alphatest="on"/>
+		<eLabel position="127, 148" size="1060, 2" backgroundColor="crypt_emm"/>
+		<eLabel position="127, 479" size="1060, 2" backgroundColor="crypt_emm"/>
+	</screen>
+	<screen name="SHOUTcastSetup" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Setup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="frame/frame_400x200.png" position="50,115" size="400,200" alphatest="on" />
+		<widget name="config" position="590, 100" size="610, 500" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="SHOUTcastStreamripperRecordingPath" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Select record path for streamripper">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup.png" position="140,200" size="166,162"/>
+		<widget name="target" position="400, 150" size="705, 22" valign="center" font="Regular;22" transparent="1" backgroundColor="black"/>
+		<widget name="filelist" position="400, 200" zPosition="1" size="705, 380" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+</skin>

@@ -1,0 +1,177 @@
+<skin>
+	<!-- DVB-T Localization -->
+	<screen name="IniTerrestrialLocation" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Setup">
+	  <!--<ePixmap pixmap="menu/mainmenu_tasks_setup_tv.png" position="55, 155" size="300,500"/>-->
+		<panel name="SetupCommon" />
+		<widget name="text" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="top" zPosition="2"/>
+		<widget name="config" position="590,100" size="618,512" itemHeight="32" font="Regular;24" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>  
+	<!-- Tuner Configuration -->
+	<screen name="NimSelection" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Choose Tuner">
+		<panel name="FullScreenWindow" />  
+		<panel name="FullScreenColourPanel" />
+		<widget enableWrapAround="1" position="650,195" render="Listbox" scrollbarMode="showOnDemand" size="525,400" source="nimlist" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 5), size = (390, 30), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the nim name,
+						MultiContentEntryText(pos = (50, 30), size = (435, 90), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is a description of the nim settings,
+					],
+				 "fonts": [gFont("Regular", 20), gFont("Regular", 15)],
+				 "itemHeight": 120
+				}
+			</convert>
+		</widget>
+		<eLabel font="Regular;20" halign="center" position="200,210" size="300,170" text="Choose Tuner" transparent="1" valign="center" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_400x200.png" position="150,195" size="400,200"/>
+	</screen>
+	<!-- Tuner setup -->
+	<screen flags="wfNoBorder" name="NimSetup" position="0, 0" size="1280, 720" backgroundColor="un44000000" title="Reception Settings">
+		<panel name="FullScreenWindow" />  
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 418" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>	
+		<ePixmap position="235,200" size="166,162" pixmap="menu/mainmenu_tasks_setup_system.png"/>
+	</screen>
+	<!-- Automatic Scan -->
+	<screen name="ScanSimple" position="0, 0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Automatic service scan">
+		<panel name="SetupCommon" />
+		<panel name="SetupTextHelp" />
+		<panel name="SetupConfig"/>
+		<widget name="footnote" position="1,1" zPosition="1" size="1,1" transparent="1" alphatest="on"/>
+		<widget name="footer" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<!-- Manual Scan -->
+	<screen flags="wfNoBorder" name="ScanSetup" position="0, 0" size="1280, 720" backgroundColor="un44000000" title="Manual service scan">
+		<panel name="SetupCommon" />
+		<panel name="SetupTextHelp" />
+		<panel name="SetupConfig"/>
+		<widget name="footnote" position="510,580" size="720,25" font="Regular;14" foregroundColor="grey" zPosition="1" transparent="1"/>
+		<widget name="introduction" position="60,300" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+ 	<!-- Satfinder -->
+	<screen flags="wfNoBorder" name="Satfinder" position="0,0" size="1280, 720" backgroundColor="un44000000" title="Satfinder">
+		<ePixmap pixmap="icons/clock.png" position="50, 30" zPosition="3" size="14,14" alphatest="on"/>
+		<widget source="global.CurrentTime" render="Label" position="75, 30" size="80, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="155, 30" size="500, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel position="50, 102" size="1160, 1" backgroundColor="crypt_emm" zPosition="2"/>
+		<eLabel position="50, 625" size="1160, 1" backgroundColor="crypt_emm" zPosition="1"/>
+		<widget name="header" position="890, 80" size="320, 22" font="Named; 20" halign="right" transparent="1" zPosition="2" foregroundColor="crypt_emm" backgroundColor="black"/>
+		<widget position="590, 170" size="610, 418" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_400x400.png" position="150,195" size="400,400"/>
+		<ePixmap alphatest="on" pixmap="icons/dish_scan.png" position="220,250" size="119,110" transparent="1" zPosition="1"/>
+		<widget font="Regular;23" name="introduction" position="350,260" size="90,30" transparent="1" zPosition="2"/>
+		<widget font="Regular;19" halign="center" position="260,325" render="Label" size="260,20" source="Frontend" transparent="1" valign="center" zPosition="2">
+			<convert type="FrontendInfo">SNRdB</convert>
+		</widget>
+		<eLabel font="Regular;21" halign="right" name="snr" position="180,405" size="60,22" text="SNR:" transparent="1" zPosition="1"/>
+		<widget position="242,406" render="Progress" size="200,14" source="Frontend" transparent="1" zPosition="1">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<widget font="Regular;21" position="463,405" render="Label" size="60,22" source="Frontend" zPosition="1">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel font="Regular;21" halign="right" name="ber" position="180,445" size="60,22" text="BER:" transparent="1" zPosition="1"/>
+		<widget position="242,446" render="Progress" size="200,14" source="Frontend" transparent="1" zPosition="1">
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<widget font="Regular;21" position="463,445" render="Label" size="60,22" source="Frontend" zPosition="1">
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<eLabel font="Regular;21" name="lock" position="200,530" size="240,22" text="Lock:"/>
+		<widget alphatest="on" pixmap="icons/lock_on.png" position="463,525" render="Pixmap" size="80,23" source="Frontend" zPosition="1">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="icons/lock_off.png" position="463,525" render="Pixmap" size="80,23" source="Frontend" zPosition="1">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+	</screen>
+	<!-- Service scan -->
+	<screen flags="wfNoBorder" name="ServiceScan" position="0,0" size="1280, 720" backgroundColor="un44000000" title="Service Scan">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<eLabel font="Regular;28" position="675,140" size="485,35" text="Scanned services:" transparent="1" zPosition="2"/>
+		<eLabel backgroundColor="white" position="665,180" size="450,2" zPosition="2"/>
+		<widget backgroundColor="#33000000" name="servicelist" position="650,195" selectionDisabled="1" size="485,400" transparent="1" scrollbarMode="showOnDemand" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_400x300.png" position="150,195" size="400,300" zPosition="-1"/>
+		<widget alphatest="on" pixmap="icons/scan-s.png" position="170,210" render="Pixmap" size="64,64" source="FrontendInfo" transparent="1" zPosition="1">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="icons/scan-c.png" position="170,210" render="Pixmap" size="64,64" source="FrontendInfo" transparent="1" zPosition="1">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget alphatest="on" pixmap="icons/scan-t.png" position="170,210" render="Pixmap" size="64,64" source="FrontendInfo" transparent="1" zPosition="1">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="scan_progress" borderWidth="1" position="245,225" size="280,14" transparent="1" zPosition="1"/>
+		<widget font="Regular;20" halign="left" name="network" position="245,250" size="280,25" transparent="1" zPosition="1"/>
+		<widget font="Regular;20" halign="center" name="transponder" position="170,300" size="360,25" transparent="1" zPosition="1"/>
+		<widget font="Regular;20" halign="center" name="scan_state" position="170,340" size="360,45" transparent="1" valign="top" zPosition="2"/>
+		<widget font="Regular;20" halign="center" name="pass" position="170,385" size="360,25" transparent="1" valign="top" zPosition="1"/>
+		<widget name="done_text" position="170,410" size="360,100" font="Regular;20" halign="center" valign="top" transparent="1" zPosition="12"/>
+	</screen>
+	<!-- Positioner setup -->
+	<screen flags="wfNoBorder" name="PositionerSetup" backgroundColor="background" position="0,0" size="1280,720" title="Positioner setup">
+		<eLabel position="50, 625" size="1160, 1" backgroundColor="crypt_emm" zPosition="1"/>
+		<ePixmap pixmap="icons/clock.png" position="50, 30" zPosition="3" size="14,14" alphatest="on"/>
+		<widget source="global.CurrentTime" render="Label" position="75, 30" size="80, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="155, 30" size="500, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel position="890, 80" size="320, 22" text="Positioner setup" font="Named; 20" halign="right" transparent="1" zPosition="2" foregroundColor="crypt_emm" backgroundColor="black"/>
+		<eLabel position="50, 101" size="1160, 1" backgroundColor="crypt_emm" zPosition="2"/>
+		<widget enableWrapAround="1" name="list" position="650,195" scrollbarMode="showOnDemand" size="510,384" transparent="1" zPosition="2"/>
+		<eLabel position="50, 101" size="1160, 1" backgroundColor="crypt_emm" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="buttons/button_200x60_red.png" position="123, 635" size="200,60" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="buttons/button_200x60_green.png" position="398, 635" size="200,60" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="buttons/button_200x60_yellow.png" position="673, 635" size="200,60" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="buttons/button_200x60_blue.png" position="948, 635" size="200,60" zPosition="1"/>
+		<widget backgroundColor="#9f1313" font="Regular;20" halign="center" name="red" position="123, 635" size="200,36" transparent="1" valign="center" zPosition="3"/>
+		<widget backgroundColor="#1f771f" font="Regular;20" halign="center" name="green" position="398, 635" size="200,36" transparent="1" valign="center" zPosition="3"/>
+		<widget backgroundColor="#a08500" font="Regular;20" halign="center" name="yellow" position="673, 635" size="200,36" transparent="1" valign="center" zPosition="3"/>
+		<widget backgroundColor="#18188b" font="Regular;20" halign="center" name="blue" position="948, 635" size="200,36" transparent="1" valign="center" zPosition="3"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_400x300.png" position="150,195" size="400,300"/>
+		<eLabel font="Regular;21" halign="center" position="180,223" size="60,22" text="SNR:" transparent="1" valign="center" zPosition="1"/>
+		<widget name="snr_bar" position="242,224" size="200,14" transparent="1" zPosition="1"/>
+		<widget font="Regular;21" halign="center" name="snr_percentage" position="463,223" size="60,22" transparent="1" valign="center" zPosition="1"/>
+		<eLabel font="Regular;21" halign="center" position="180,260" size="60,22" text="BER:" transparent="1" valign="center" zPosition="1"/>
+		<widget name="ber_bar" position="242,261" size="200,14" transparent="1" zPosition="1"/>
+		<widget font="Regular;21" halign="center" name="ber_value" position="463,260" size="60,22" transparent="1" valign="center" zPosition="1"/>
+		<eLabel font="Regular;21" halign="left" position="180,334" size="60,22" text="Lock:" transparent="1" valign="center" zPosition="1"/>
+		<eLabel font="Regular;21" halign="left" position="180,371" size="150,22" text="Frequency:" transparent="1" valign="center" zPosition="1"/>
+		<eLabel font="Regular;21" halign="left" position="180,408" size="150,22" text="Symbolrate:" transparent="1" valign="center" zPosition="1"/>
+		<eLabel font="Regular;21" halign="left" position="180,445" size="150,22" text="FEC:" transparent="1" valign="center" zPosition="1"/>
+		<widget font="Regular;21" halign="reight" name="lock_state" position="370,334" size="150,22" transparent="1" valign="center" zPosition="1"/>
+		<widget font="Regular;21" halign="reight" name="frequency_value" position="370,371" size="150,22" transparent="1" valign="center" zPosition="1"/>
+		<widget font="Regular;21" halign="reight" name="symbolrate_value" position="370,408" size="150,22" transparent="1" valign="center" zPosition="1"/>
+		<widget font="Regular;21" halign="reight" name="fec_value" position="370,445" size="150,22" transparent="1" valign="center" zPosition="1"/>
+	</screen>	
+	<screen name="FastScanScreen" position="0, 0" size="1280, 720" backgroundColor="background" flags="wfNoBorder" title="FastScanScreen">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<eLabel position="50, 102" size="1160, 1" backgroundColor="crypt_emm" zPosition="2"/>
+		<widget position="590, 170" size="610, 418" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>
+		<ePixmap alphatest="on" name="textborder" pixmap="frame/frame_400x200.png" position="150,195" size="400,200" zPosition="2"/>
+		<widget font="Regular;24" halign="center" name="introduction" position="170,270" size="360,50" transparent="1" zPosition="3"/>		
+		<eLabel position="50, 625" size="1160, 1" backgroundColor="crypt_emm"/>
+	</screen>
+	<screen name="AutoDiseqc" position="c-250,c-100" size="500,250" title=" ">
+		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="tunerstatusbar" render="Label" position="10,60" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="config" position="10,100" size="e-10,100" scrollbarMode="showOnDemand" />
+		<ePixmap pixmap="buttons/red.png" position="c-140,e-45" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="c-140,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+	</screen>
+</skin>

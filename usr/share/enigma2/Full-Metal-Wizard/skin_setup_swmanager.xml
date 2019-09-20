@@ -1,0 +1,176 @@
+<skin>
+	<screen name="SoftwareManagerSetup" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Software Manager Setup">
+		<panel name="SetupCommon" />
+		<widget font="Regular;20" halign="center" source="introduction" render="Label" position="60,130" size="380,170" transparent="1" valign="center" zPosition="2"/>
+		<widget position="590,145" size="610,450" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>
+	<screen name="SoftwareManagerInfo" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Software Manager Information" >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590,170" size="610,415" source="list" render="Listbox" scrollbarMode="showOnDemand" itemHeight="50" backgroundColor="#41000000" transparent="1" selectionDisabled="0">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 0), size = (595, 50), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0), # index 0 is the name
+					],
+				"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+		<ePixmap position="125,185" size="400,300" pixmap="frame/frame_400x300.png" alphatest="on" zPosition="2"/>
+		<widget source="introduction" render="Label" position="150,205" size="350,260" zPosition="3" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
+	</screen>	
+	<screen name="UpdatePlugin" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Software Update...">
+		<panel name="FullScreenWindow" />
+		<widget name="activityslider" position="center,250" size="640,15" backgroundColor="#44222222" zPosition="10"/>
+		<widget source="status" position="center,280" size="1120,60" render="Label" font="Regular;22" halign="center" valign="center" transparent="1" backgroundColor="transpBlack" />
+		<widget source="package" position="center,360" size="1120,30" render="Label" font="Regular;22" halign="center" valign="center" transparent="1" backgroundColor="transpBlack" />
+		<widget name="slider" position="center,390" size="640,15" backgroundColor="#44222222" />
+	</screen>
+	<screen name="UpdatePluginMenu" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Softwaremanager..." >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenMenuButtonPanel" />
+		<ePixmap position="125,185" size="400,400" pixmap="frame/frame_400x400.png" alphatest="on" zPosition="2"/>
+		<widget position="665,145" render="Listbox" scrollbarMode="showOnDemand" backgroundColor="#41000000" size="500,500" source="menu" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [ MultiContentEntryText(pos = (20, 8), size = (400, 30), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),
+				  MultiContentEntryText(pos = (415, 10), size = (50, 30), flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = '>') ],
+				"fonts": [gFont("Regular", 24)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+		<widget source="menu" render="Listbox" position="125,185" size="400,400" zPosition="3" scrollbarMode="showNever" selectionDisabled="1" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 10), size = (380, 380), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 0 is the MenuText,
+					],
+				"fonts": [gFont("Regular", 19)],
+				"itemHeight": 390
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="RestoreMenu" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Restore Backups">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="filelist" position="510,100" size="720,500" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+	<screen name="BackupSelection" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Select files/folders to backup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_timer.png" position="200,200" size="166,162"/>
+		<widget name="checkList" position="510,100" size="720,500" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+	<screen name="IpkgInstaller" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Ipkg Installer...">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="list" position="510,100" size="720,500" scrollbarMode="showOnDemand" transparent="1"/>
+		<ePixmap position="100,185" size="400,300" pixmap="frame/frame_400x300.png" alphatest="on" zPosition="2"/>
+		<widget source="introduction" render="Label" position="125,205" size="350,260" zPosition="3" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
+	</screen>
+	<screen name="IPKGMenu" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Select IPKG source.....">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="filelist" position="510,100" size="720,500" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+	<screen name="IPKGSource" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="IPKG source">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget name="text" position="60,100" size="1160,30" font="Regular;20" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+	<screen name="BackupScreen" position="135,144" size="350,310" title="Backup is running">
+		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand"/>
+	</screen>
+ 	<screen name="PacketManager" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Softwaremanager..." >
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget source="list" render="Listbox" position="510,100" size="720,500" zPosition="3" scrollbarMode="showNever" selectionDisabled="1" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 1), size = (650, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+						MultiContentEntryText(pos = (10, 27), size = (650, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+						MultiContentEntryPixmapAlphaTest(pos = (660, 0), size = (48, 48), png = 4), # index 4 is the status pixmap
+						MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (720, 2), png = 5), # index 4 is the div pixmap
+					],
+				"fonts": [gFont("Regular", 22),gFont("Regular", 16)],
+
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+	</screen>
+	<screen name="PluginManager" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Extension management">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget source="list" render="Listbox" position="510,100" size="720,500" backgroundColor="#41000000" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"templates":
+					{"default": (51,[
+							MultiContentEntryText(pos = (10, 1), size = (650, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (10, 27), size = (650, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (660, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (720, 2), png = 6), # index 6 is the div pixmap
+						]),
+					"category": (50,[
+							MultiContentEntryText(pos = (30, 1), size = (630, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (30, 27), size = (630, 20), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (720, 2), png = 3), # index 3 is the div pixmap
+						])
+					},
+					"fonts": [gFont("Regular", 22),gFont("Regular", 16)],
+					"itemHeight": 50
+				}
+			</convert>
+		</widget>	
+		<ePixmap position="60,185" size="400,300" pixmap="frame/frame_400x300.png" alphatest="on" zPosition="2"/>
+		<widget source="status" render="Label" position="85,205" size="350,260" zPosition="3" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
+	</screen>
+	<screen name="PluginManagerInfo" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Extension management">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget source="list" render="Listbox" position="510,100" size="720,500" backgroundColor="#41000000" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (50, 1), size = (250, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (50, 25), size = (640, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
+							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (650, 2), png = 3), # index 3 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
+					"itemHeight": 50
+					}
+				</convert>
+		</widget>
+		<ePixmap position="60,185" size="400,300" pixmap="frame/frame_400x300.png" alphatest="on" zPosition="2"/>
+		<widget source="status" render="Label" position="85,205" size="350,260" zPosition="3" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
+	</screen>
+	<screen name="PluginManagerHelp" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Extension management">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget source="list" render="Listbox" position="510,100" size="720,500" backgroundColor="#41000000" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (50, 1), size = (540, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (50, 25), size = (540, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
+							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 3), # index 3 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
+					"itemHeight": 50
+					}
+			</convert>
+		</widget>
+		<ePixmap position="60,185" size="400,300" pixmap="frame/frame_400x300.png" alphatest="on" zPosition="2"/>
+		<widget source="status" render="Label" position="85,205" size="350,260" zPosition="3" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
+	</screen> 
+	<screen name="PluginDetails" position="0,0" size="1280,720" backgroundColor="un44000000" flags="wfNoBorder" title="Plugin details">
+		<panel name="SetupCommon" />
+		<widget source="author" render="Label" position="810,130" size="500,25" zPosition="10" font="Regular;21" transparent="1"/>
+		<!--<widget name="statuspic" position="1053,34" size="48,48" alphatest="on"/>
+		<widget name="divpic" position="500,80" size="600,2" alphatest="on"/>-->
+		<widget name="detailtext" position="60,130" size="380,170"  font="Regular;20" halign="center" transparent="1" valign="center" zPosition="3"/>
+		<widget name="screenshot" position="610,140" size="330,350" alphatest="blend"/>
+	</screen> 
+</skin>

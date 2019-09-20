@@ -1,0 +1,154 @@
+<skin>
+	<!--
+	  | WizardTemplate - common base for all wizards except
+	  | LanguageWizard and TutorialWizard
+	  -->
+	<screen flags="wfNoBorder" name="WizardTemplate" backgroundColor="background" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel backgroundColor="white" position="565,80" size="550,2" zPosition="2"/>
+		<ePixmap pixmap="icons/clock.png" position="50, 30" zPosition="3" size="14,14" alphatest="on"/>
+		<widget source="global.CurrentTime" render="Label" position="75, 30" size="80, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="155, 30" size="500, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<ePixmap alphatest="on" pixmap="general/wizard.png" position="140,195" size="220,220" transparent="1" zPosition="10"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_595x250.png" position="545,95" size="595,250"/>
+		<widget font="Regular;20" halign="center" name="text" position="565,115" size="555,215" transparent="1" valign="center" zPosition="12"/>
+	</screen>
+
+	<!-- CommonWizard - common Wizard screen except for "config" widget -->
+	<!--
+	  | Used by NetworkWizard, DefaultWizard, DefaultSatLists,
+	  | DreamPackageWizard, VideoWizard and ImageWizard
+	  -->
+	<screen flags="wfNoBorder" name="CommonWizard" backgroundColor="background" position="0,0" size="1280,720" title="Welcome...">
+		<panel name="WizardTemplate"/>
+		<widget enableWrapAround="1" position="550,365" size="600,300" render="Listbox" source="list" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (20, 10), size = (515, 30), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0),
+						MultiContentEntryText(pos = (535, 10), size = (30, 30), flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = ">")
+					],
+				"fonts": [gFont("Regular", 20)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+	</screen>
+
+	<!-- StandardWizard - standard format Wizard screen -->
+	<!--
+	  | Used by NetworkWizard, DefaultWizard, DefaultSatLists,
+	  | DreamPackageWizard, VideoWizard and ImageWizard
+	  -->
+	<screen flags="wfNoBorder" name="StandardWizard" backgroundColor="background" position="0,0" size="1280,720" title="Welcome...">
+		<panel name="CommonWizard"/>
+		<widget position="550,365" size="600,300" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>
+	</screen>
+
+	<!-- Network Wizard -->
+	<screen flags="wfNoBorder" name="NetworkWizard" backgroundColor="background" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- Default wizard -->
+	<screen flags="wfNoBorder" name="DefaultWizard" backgroundColor="background" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- DefaultSatLists -->
+	<screen flags="wfNoBorder" backgroundColor="background"  name="DefaultSatLists" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- DreamPackageWizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="DreamPackageWizard" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- Language Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="LanguageWizard" position="0,0" size="1280,720" title="Language selection">
+		<eLabel font="Regular;28" position="675,40" size="485,35" text="Language Selection" transparent="1" zPosition="2"/>
+		<eLabel backgroundColor="white" position="665,80" size="470,2" zPosition="2"/>
+		<ePixmap pixmap="icons/clock.png" position="50, 30" zPosition="3" size="14,14" alphatest="on"/>
+		<widget source="global.CurrentTime" render="Label" position="75, 30" size="80, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="155, 30" size="500, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<widget position="650,115" size="510,500" render="Listbox" scrollbarMode="showOnDemand" source="languages" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1), # index 1 is the language name,
+						MultiContentEntryPixmap(pos = (10, 10), size = (60, 40), png = 2), # index 2 is the pixmap
+					],
+				 "fonts": [gFont("Regular", 20)],
+				 "itemHeight": 64
+				}
+			</convert>
+		</widget>
+		<widget alphatest="blend" name="wizard" pixmap="general/wizard.png" position="140,195" size="220,220" transparent="1" zPosition="10"/>
+		<ePixmap alphatest="blend" pixmap="frame/frame_495x160.png" position="110,455" size="495,210"/>
+		<widget backgroundColor="#41000000" font="Regular;20" halign="center" name="text" position="130,445" size="455,170" valign="center" zPosition="3" transparent="1" />
+	</screen>
+
+	<!--Start Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="StartWizard" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="CommonWizard"/>
+		<widget position="550,365" size="618,320" name="config" itemHeight="32" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1" zPosition="2"/>
+	</screen>
+
+	<!-- Terrestrial Location Scan Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="IniTerrestrialLocationWizard" position="0,0" size="1280,720" title="Welcome...">
+		<panel name="StartWizard"/>
+	</screen>
+
+	<!-- Tutorial Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="TutorialWizard" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="675,40" size="485,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<ePixmap pixmap="icons/clock.png" position="50, 30" zPosition="3" size="14,14" alphatest="on"/>
+		<widget source="global.CurrentTime" render="Label" position="75, 30" size="80, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="155, 30" size="500, 20" font="Named; 16" halign="left" foregroundColor="white" backgroundColor="black" transparent="1">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="white" position="665,80" size="450,2" zPosition="2"/>
+		<ePixmap alphatest="on" pixmap="general/wizard.png" position="140,195" size="220,220" transparent="1" zPosition="10"/>
+		<ePixmap alphatest="on" pixmap="frame/frame_495x310.png" position="645,95" size="495,310"/>
+		<widget font="Regular;20" halign="center" name="text" position="665,115" size="455,170" transparent="1" valign="center" zPosition="12"/>
+		<widget name="list" position="650,425" size="510,250" transparent="1" zPosition="2"/>
+	</screen>
+
+	<!-- VideoWizard -->
+	<screen name="VideoWizard" position="0,0" size="1280,720" title="Select Video Output..." backgroundColor="background" flags="wfNoBorder">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- Image Backup Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="ImageWizard" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="StandardWizard"/>
+	</screen>
+
+	<!-- Startup HDD Format Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="StartHDDFormatWizard" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="WizardTemplate"/>
+		<widget font="Regular;20" halign="left" valign="top" name="errors" position="550,365" size="610,308" scrollbarMode="showOnDemand" transparent="1" zPosition="12"/>
+	</screen>
+
+	<!-- Final "Congratulations" Setup Wizard -->
+	<screen flags="wfNoBorder" backgroundColor="background" name="IniEndWizard" position="0,0" size="1280,720" title="Welcome...">
+		<eLabel font="Regular;28" position="575,40" size="585,35" text="Welcome..." transparent="1" zPosition="2"/>
+		<panel name="WizardTemplate"/>
+	</screen>
+</skin>

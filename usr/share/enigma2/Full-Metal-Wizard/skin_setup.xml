@@ -1,0 +1,286 @@
+<skin>
+	<screen name="SetupCommon">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap position="55,120" size="390,180" borderColor="grey" borderWidth="2" transparent="1"/>
+		<widget name="description" position="60,125" size="380,170" font="Regular;18" halign="center" transparent="1" valign="center" zPosition="2"/>
+	</screen>
+	<screen name="SetupTextHelp">
+		<panel name="FullscreenVKeyIconButtonPanel"/>
+		<widget name="HelpWindow" position="50,335" zPosition="1" size="400,200" transparent="1" alphatest="on"/>
+	</screen>
+	<screen name="SetupConfig">
+		<widget name="config" position="510, 120" size="720, 450" itemHeight="45" scrollbarMode="showOnDemand" transparent="1"/>
+	</screen>
+	<!-- General Setup Screen -->
+	<screen name="GeneralSetup" position="0,0" size="1280,720" backgroundColor="background" flags="wfNoBorder" title="Setup" >
+		<panel name="SetupCommon" />
+		<ePixmap position="480, 120" size="410, 460" borderColor="blue" borderWidth="2" transparent="1" />
+		<widget source="list" render="Listbox" position="485, 125" size="400, 450" itemHeight="50" scrollbarMode="showOnDemand" transparent="1" >
+			# Eval is used to allow parameterisation of the
+			# template used in the old embedded template to be
+			# used in the same way here.
+			# Functions imported into Components.Converter.TemplatedMultiContent
+			# must also be forwarded into the eval().
+
+			# Data indexes:
+			# 1: item name
+			# 2: item end text
+			# 3: item short description
+			<convert type="TemplatedMultiContent">
+				eval("""{
+					  "template": [
+					    MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width - endtext_width, 32), text=1),
+					    MultiContentEntryText(pos=(width - scrollbar_width - padding_width - endtext_width, 0), size=(endtext_width, 32), text=2),
+					    MultiContentEntryText(pos=(padding_width, 32), size=(width - scrollbar_width - 2 * padding_width, 18), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=3),
+					  ],
+					  "fonts": [gFont("Regular", 28), gFont("Regular", 14)],
+					  "itemHeight": 50
+					}""",
+					dict(width=400, endtext_width=20, scrollbar_width=10, padding_width=10,
+					     MultiContentEntryText=MultiContentEntryText, gFont=gFont)
+				)
+			</convert>
+		</widget>
+		<ePixmap position="900,120" size="330,460" borderColor="blue" borderWidth="2" transparent="1" />
+		<widget source="sublist" render="Listbox" position="905,125" size="320,450" itemHeight="45" scrollbarMode="showOnDemand" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				eval("""{
+					  "template": [
+					    MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width, 23), text=1),
+					    MultiContentEntryText(pos=(padding_width, 23), size=(width - scrollbar_width - 2 * padding_width, 17), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=2),
+					  ],
+					  "fonts": [gFont("Regular", 20), gFont("Regular", 14)],
+					  "itemHeight": 45
+					}""",
+					dict(width=320, scrollbar_width=10, padding_width=10,
+					     MultiContentEntryText=MultiContentEntryText, gFont=gFont)
+				)
+			</convert>
+		</widget>
+	</screen>
+	<!-- Setup -->
+	<screen name="Setup" position="0,0" size="1280, 720" backgroundColor="background" flags="wfNoBorder" title="Setup">
+		<panel name="SetupCommon" />
+		<panel name="SetupTextHelp" />
+		<panel name="SetupConfig"/>
+		<widget name="footnote" position="510,580" size="720,25" font="Regular;14" foregroundColor="grey" zPosition="1" transparent="1"/>
+	</screen>
+	<!-- Power / Restart and Information Menu Screens -->
+	<!-- Power / Restart (MENU > Power) Menu -->
+	<screen backgroundColor="background" flags="wfNoBorder" name="menu_shutdown" position="0,0" size="1280,720" title="Power / Restart">
+		<panel name="FullScreenWindow" />
+		<widget backgroundColor="background" position="665,115" render="Listbox" scrollbarMode="showOnDemand" size="500,500" source="menu" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{
+				"template": [ MultiContentEntryText(pos = (20, 8), size = (400, 30), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0),
+						MultiContentEntryText(pos = (415, 10), size = (50, 30), flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = 4) ],
+				"fonts": [gFont("Regular", 24)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+		<widget alphatest="on" pixmap="menu/mainmenu_tasks_power_sleeptimer.png" position="275,200" render="Pixmap" size="166,162" source="menu" zPosition="1">
+			<convert type="MenuEntryCompare">mainmenu_tasks_power_sleeptimer</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget alphatest="on" pixmap="menu/mainmenu_tasks_power_standby.png" position="275,200" render="Pixmap" size="166,162" source="menu" zPosition="1">
+			<convert type="MenuEntryCompare">mainmenu_tasks_power_standby</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget alphatest="on" pixmap="menu/mainmenu_tasks_power_reboot.png" position="275,200" render="Pixmap" size="166,162" source="menu" zPosition="1">
+			<convert type="MenuEntryCompare">mainmenu_tasks_power_reboot</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget alphatest="on" pixmap="menu/mainmenu_tasks_power_shutdown.png" position="275,200" render="Pixmap" size="166,162" source="menu" zPosition="1">
+			<convert type="MenuEntryCompare">mainmenu_tasks_power_shutdown</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget alphatest="on" pixmap="menu/mainmenu_tasks_power_restartshell.png" position="275,200" render="Pixmap" size="166,162" source="menu" zPosition="1">
+			<convert type="MenuEntryCompare">mainmenu_tasks_power_restartshell</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>	
+
+<!-- Information (MENU > Information) Menu -->
+
+	<screen backgroundColor="background" flags="wfNoBorder" name="menu_information" position="0,0" size="1280,720" title="Information">
+		<panel name="FullScreenWindow" />
+		<ePixmap alphatest="on" pixmap="menu/mainmenu_tasks_info.png" position="200,200" size="166,162" zPosition="2" />
+		<widget backgroundColor="background" position="665,115" render="Listbox" scrollbarMode="showOnDemand" size="500,500" source="menu" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{
+				"template": [ MultiContentEntryText(pos = (20, 8), size = (400, 30), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0),
+						MultiContentEntryText(pos = (415, 10), size = (50, 30), flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = 4) ],
+				"fonts": [gFont("Regular", 24)],
+				"itemHeight": 50
+				}
+			</convert>
+		</widget>
+	</screen>
+
+<!-- Screen layout template for Information (MENU > Information) Screens -->
+
+	<screen name="SystemInfoPanel">
+		<panel name="FullScreenWindow" />
+		<ePixmap pixmap="menu/mainmenu_tasks_info.png" position="200,200" size="166,162" zPosition="2" />
+	</screen>
+
+	<screen name="SystemInfoWidgetPanel">
+		<panel position="500,115" size="730,475" >
+			<panel name="SystemInfoWidget" />
+		</panel>
+	</screen>
+
+<!-- Widget layout template for Information (MENU > Information) Screens -->
+
+	<screen name="SystemInfoWidget">
+		<widget source="list" render="Listbox" position="fill" scrollbarMode="showOnDemand" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					# 0   100 200 300 400 500 600 700
+					# |   |   |   |   |   |   |   |
+					# 00000000000000000000000000000 Heading, larger font
+					#  1111111 22222222222222222222 Normal label/value
+					# 33333333 44444444444444444444 Heading label/value, large font
+					#  1111111 555555555 6666666666 Gateway with gateway and destination
+					# 33333333 777777777 888 9      Network interface heading
+					MultiContentEntryText(pos = (0, 0), size = (730, 25), font = 1, flags = RT_HALIGN_LEFT, text = 0), # index 0 is a heading, whole line, large font
+					MultiContentEntryText(pos = (25, 0), size = (175, 25), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a label
+					MultiContentEntryText(pos = (225, 0), size = (505, 25), font = 0, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the information
+					MultiContentEntryText(pos = (0, 0), size = (200, 25), font = 1, flags = RT_HALIGN_LEFT, text = 3), # index 3 is a label, large font
+					MultiContentEntryText(pos = (225, 0), size = (505, 25), font = 1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is the information, large font
+					MultiContentEntryText(pos = (225, 0), size = (225, 25), font = 0, flags = RT_HALIGN_LEFT, text = 5), # index 5 is the network info gateway
+					MultiContentEntryText(pos = (475, 0), size = (265, 25), font = 0, flags = RT_HALIGN_LEFT, text = 6), # index 6 is the network info gateway destination
+					MultiContentEntryText(pos = (225, 0), size = (225, 25), font = 1, flags = RT_HALIGN_LEFT, text = 7), # index 7 is the interface type
+					MultiContentEntryText(pos = (475, 0), size = (100, 25), font = 1, flags = RT_HALIGN_LEFT, text = 8), # index 8 internet label
+					MultiContentEntryPixmapAlphaTest(pos = (600, 7), size = (15, 16), png = 9), # index 9 is the link state pixmap
+					],
+					"fonts": [gFont("Regular", 20),gFont("Regular", 22)],
+					"itemHeight": 25,
+					"selectionEnabled": False,
+				}
+			</convert>
+		</widget>
+	</screen>
+
+<!-- Widget layout template for internet status line in Menu > Information > Network screen -->
+
+	<screen name="SystemInetInfoWidget">
+		<eLabel font="Regular;22" position="0,0" size="200,25" text="Hostname:" transparent="1" zPosition="2"/>
+		<widget name="hostname" position="225,0" size="225,25" font="Regular;22" halign="left" transparent="1" valign="top" zPosition="2"/>
+		<eLabel font="Regular;22" position="475,0" size="100,25" text="Internet:" transparent="1" zPosition="2"/>
+		<widget name="inetstatus" position="600,6" size="15,16" pixmaps="buttons/button_green_off.png,buttons/button_green.png" alphatest="on" zPosition="2"/>
+	</screen>
+
+<!-- Widget layout template for Information (MENU > Service) Screens -->
+
+	<screen backgroundColor="un44000000" flags="wfNoBorder" name="ServiceInfoWidget" position="0,0" size="730,475" title="Service Information">
+		<widget source="list" render="Listbox" position="fill" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					# 0   100 200 300 400 500 600 700
+					# |   |   |   |   |   |   |   |
+					# 0000000000 111111111111111111 Normal label/value
+					MultiContentEntryText(pos = (0, 1), size = (250, 26), font = 0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is a label
+					MultiContentEntryText(pos = (275, 1), size = (455, 26), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the information
+],
+					"fonts": [gFont("Regular", 22)],
+					"itemHeight": 28,
+					"selectionEnabled": False
+				}
+			</convert>
+		</widget>
+	</screen>
+
+<!-- About Information (MENU > Information > About) Screen -->
+
+<!--
+ |  The height of the window widget that holds the data should be sized to 
+ |  fit the available screen space rather than some random size.  This will 
+ |  make the skin more flexible for future use and reuse.
+ +-->
+
+	<screen backgroundColor="background" flags="wfNoBorder" name="About" position="0,0" size="1280,720" title="About">
+		<panel name="SystemInfoPanel" />
+		<panel name="SystemInfoWidgetPanel" />
+	</screen>
+
+<!-- Devices Information (MENU > Information > Devices) Screen -->
+
+	<screen backgroundColor="background" flags="wfNoBorder" name="Devices" size="1280,720" title="Device Information">
+		<panel name="SystemInfoPanel" />
+		<widget source="list" render="Listbox" position="500,115" size="730,475" scrollbarMode="showOnDemand" transparent="1" zPosition="2">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					# 0   100 200 300 400 500 600 700
+					# |   |   |   |   |   |   |   |
+					# 00000000000000000000000000000 Heading, larger font
+					#  1111111 22222222222222222222 Normal label/value
+					# 33333333 44444444444444444444 Heading label/value, large font
+					#  5555555 6666666666666 777777 HDD entry, DLNA type
+					#   888888 9999 AAAAAA BBBBBBBB Filesystem, smaller font
+					#  CCCCCCCCCCCCCCCCCCCCCCCCCCCC Wide filesystem name, smaller font
+					#  DDDDDDDDDDDDDDDDDDDDDDDDDDDD Wide DLNA name
+					MultiContentEntryText(pos = (0, 0), size = (730, 25), font = 1, flags = RT_HALIGN_LEFT, text = 0), # index 0 is a heading, whole line, large font
+					MultiContentEntryText(pos = (25, 0), size = (175, 25), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a label
+					MultiContentEntryText(pos = (225, 0), size = (505, 25), font = 0, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the information
+					MultiContentEntryText(pos = (0, 0), size = (200, 25), font = 1, flags = RT_HALIGN_LEFT, text = 3), # index 3 is a label, large font
+					MultiContentEntryText(pos = (225, 0), size = (505, 25), font = 1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is the information, large font
+
+					MultiContentEntryText(pos = (25, 0), size = (175, 25), font = 0, flags = RT_HALIGN_LEFT, text = 5), # index 5 is a HDD name
+					MultiContentEntryText(pos = (225, 0), size = (325, 25), font = 0, flags = RT_HALIGN_LEFT, text = 6), # index 6 is a HDD type
+					MultiContentEntryText(pos = (575, 0), size = (200, 25), font = 0, flags = RT_HALIGN_LEFT, text = 7), # index 7 is a HDD size
+					MultiContentEntryText(pos = (50, 0), size = (150, 25), font = 2, flags = RT_HALIGN_LEFT, text = 8), # index 8 is a filesystem name
+					MultiContentEntryText(pos = (225, 0), size = (100, 25), font = 2, flags = RT_HALIGN_LEFT, text = 9), # index 9 filesystem type
+					MultiContentEntryText(pos = (350, 0), size = (150, 25), font = 2, flags = RT_HALIGN_LEFT, text = 10), # index 10 filesystem size
+					MultiContentEntryText(pos = (525, 0), size = (205, 25), font = 2, flags = RT_HALIGN_LEFT, text = 11), # index 11 filesystem free
+					MultiContentEntryText(pos = (25, 0), size = (705, 25), font = 2, flags = RT_HALIGN_LEFT, text = 12), # index 12 is a whole line filesystem name
+					MultiContentEntryText(pos = (25, 0), size = (705, 25), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is a whole line DLNA name
+					],
+					"fonts": [gFont("Regular", 21), gFont("Regular", 22), gFont("Regular", 20)],
+					"itemHeight": 25,
+					"selectionEnabled": False,
+				}
+			</convert>
+		</widget>
+	</screen>
+
+<!-- Memory Information (MENU > Information > Memory) Screen -->
+
+	<screen backgroundColor="background" flags="wfNoBorder" name="SystemMemoryInfo" size="1280,720" title="Memory Information">
+		<panel name="SystemInfoPanel" />
+		<panel name="SystemInfoWidgetPanel" />
+	</screen>
+
+<!-- Network Information (MENU > Information > Network) Screen -->
+
+	<screen backgroundColor="background" flags="wfNoBorder" name="SystemNetworkInfo" size="1280,720" title="Network Information">
+		<panel name="SystemInfoPanel" />
+		<panel position="500,115" size="730,25" >
+			<panel name="SystemInetInfoWidget" />
+		</panel>
+		<eLabel position="500,152" size="730,2" backgroundColor="darkgrey" zPosition="1" />
+		<panel position="500,165" size="730,425" >
+			<panel name="SystemInfoWidget" />
+		</panel>
+	</screen>
+
+<!-- Sevice Information (MENU > Information > Service) Screens -->
+
+	<screen backgroundColor="un44000000" flags="wfNoBorder" name="ServiceInfo" position="0,0" size="1280,720" title="Service Information">
+		<panel name="SystemInfoPanel" />
+		<panel position="500,115" size="730,475" >
+			<panel name="ServiceInfoWidget" />
+		</panel>
+		<panel name="FullScreenColourPanel" />
+	</screen>
+
+<!-- ??? Screen -->
+
+	<screen name="TranslationInfo" position="center,center" size="420,350" title="Translation">
+		<eLabel font="Regular;23" position="10,20" size="380,23" text="Translation:" />
+		<widget font="Regular;20" position="10,55" render="Label" size="380,20" source="TranslatorName" />
+		<widget font="Regular;20" position="10,100" render="Label" size="380,250" source="TranslationInfo" />
+	</screen>
+</skin>

@@ -1,0 +1,24 @@
+<skin>
+	<!-- Picture Player Setup use SETUP screen skin -->
+	<!-- Media Player Settings -->
+	<screen name="MediaPlayerSettings" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Setup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<ePixmap pixmap="menu/mainmenu_tasks_setup.png" position="235,200" size="166,162"/>
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+	</screen>  
+	<!-- Movie Browser -->
+	<screen name="movieBrowserConfig" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Movie Browser Setup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<widget name="plugin" position="50, 185" size="512,288" alphatest="blend" zPosition="1" />
+	</screen>
+	<!-- Music Browser -->
+	<screen name="mp3BrowserConfig" position="0,0" size="1280, 720" backgroundColor="un44000000" flags="wfNoBorder" title="Movie Browser Setup">
+		<panel name="FullScreenWindow" />
+		<panel name="FullScreenColourPanel" />
+		<widget position="590, 170" size="610, 415" name="config" itemHeight="50" backgroundColor="#41000000" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<widget name="plugin" position="50, 185" size="512,288" alphatest="blend" zPosition="1" />
+	</screen>  
+</skin>
